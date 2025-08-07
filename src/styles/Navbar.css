@@ -1,0 +1,40 @@
+.navbar-div {
+    background-color: #151515;
+    color: white;
+    height: 6rem;
+    padding: 0rem 4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-title {
+    font-family: "Adamina", serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.navbar-routes {
+    display: flex;
+    flex-direction: row;
+    gap: 8rem;
+}
+
+.navbar-link {
+    text-decoration: none;
+    color: white;
+    font-family: "Agdasima", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.navbar-link:hover {
+    color: black;
+    background: rgba(253, 253, 253, 0.717);
+    border: none;
+    border-radius: 8px;
+    transform: translateY(-2px);
+}
