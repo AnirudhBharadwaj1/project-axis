@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FiUser } from "react-icons/fi";
 import "../styles/Navbar.css";
 
@@ -6,24 +7,24 @@ function Navbar() {
         <div className="navbar-div">
             <h3 className="navbar-title">PROD.BYAXIS</h3>
             <div className="navbar-routes">
-                <a href="/" className="navbar-link">
+                <Link to="/" className="navbar-link">
                     Home
-                </a>
-                <a href="/shop" className="navbar-link">
+                </Link>
+                <Link to="/shop/free-kits" className="navbar-link">
                     Free Kits
-                </a>
-                <a href="/shop" className="navbar-link">
+                </Link>
+                <Link to="/shop/drum-kits" className="navbar-link">
                     Drum Kits
-                </a>
-                <a href="/shop" className="navbar-link">
+                </Link>
+                <Link to="/shop/one-shot-kits" className="navbar-link">
                     One Shot Kits
-                </a>
-                <a href="/shop" className="navbar-link">
+                </Link>
+                <Link to="/shop/loop-kits" className="navbar-link">
                     Loop Kits
-                </a>
+                </Link>
             </div>
-            <div>
-                <FiUser size={40} />
+            <div className="navbar-account-div">
+                <FiUser size={30} />
             </div>
         </div>
     );
