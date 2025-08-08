@@ -1,0 +1,36 @@
+.kit-slides-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* height: 40rem; */
+    padding: 1rem 2rem;
+}
+
+.kit-slide-chevron {
+    color: black;
+    cursor: pointer;
+}
+
+.kit-slide-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.kit-slide-image {
+    width: 25rem;
+    height: 25rem;
+}
+
+.kit-slide-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.kit-slide-header {
+    font-size: 1.5rem;
+}
+
+.kit-slide-desc {
+}

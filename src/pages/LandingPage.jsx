@@ -1,11 +1,12 @@
-import Navbar from "../components/Navbar";
 import "../styles/LandingPage.css";
+import Navbar from "../components/Navbar";
+import KitSlides from "../components/KitSlides";
 
 function LandingPage() {
     return (
         <div className="page">
             <Navbar />
-            <h3>Hello</h3>
+            <KitSlides />
         </div>
     );
 }
