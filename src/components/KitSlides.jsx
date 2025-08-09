@@ -14,14 +14,16 @@ function KitSlides() {
         {
             image: gladius,
             name: "Gladius Drumkit",
-            desc: "This drumkit is good.",
+            desc: "The Gladius Drumkit focuses on delivering hard, punchy sounds to your beat. Meant to be used for trap and hip hop, this drum kit provides essential flavor to your bounce.",
             bg: "linear-gradient(to right, #ffaaa9 0%, #dd3f3e 50%, #ffaaa9 100%)",
+            productLink: "/product/12345/",
         },
         {
             image: chroma,
             name: "Chroma FX Kit",
             desc: "This FX pack be crazy crodie",
             bg: "linear-gradient(to right, #ffaaa9 0%, #dd3f3e 50%, #ffaaa9 100%)",
+            productLink: "/product/56789",
         },
     ];
 
@@ -45,7 +47,7 @@ function KitSlides() {
             style={{ background: products[slide].bg }}
         >
             <FaChevronLeft
-                size={32}
+                size={40}
                 className="kit-slide-chevron"
                 onClick={prevSlide}
             />
@@ -60,11 +62,15 @@ function KitSlides() {
                         {products[slide].name.toUpperCase()}
                     </h3>
                     <p className="kit-slide-desc">{products[slide].desc}</p>
-                    <WhiteButton text="Buy Now" link="/product/12345" />
+                    <WhiteButton
+                        text="Buy Now"
+                        link={products[slide].productLink}
+                        style={{ marginTop: "auto" }}
+                    />
                 </div>
             </div>
             <FaChevronRight
-                size={32}
+                size={40}
                 className="kit-slide-chevron"
                 onClick={nextSlide}
             />

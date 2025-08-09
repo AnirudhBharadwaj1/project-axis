@@ -1,8 +1,8 @@
 import "../styles/WhiteButton.css";
 
-function WhiteButton({ text, link }) {
+function WhiteButton({ text, link, style }) {
     return (
-        <a href={link} className="white-button">
+        <a href={link} className="white-button" style={style}>
             {text}
         </a>
     );

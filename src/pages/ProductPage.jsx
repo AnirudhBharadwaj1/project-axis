@@ -1,3 +1,5 @@
+import { useParams } from "react-router-dom";
+
 function ProductPage() {
     const { product } = useParams();
 
