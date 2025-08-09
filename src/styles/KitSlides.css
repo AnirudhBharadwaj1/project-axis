@@ -3,8 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /* height: 40rem; */
-    padding: 1rem 2rem;
+    padding: 2rem 2rem;
 }
 
 .kit-slide-chevron {
@@ -15,6 +14,8 @@
 .kit-slide-content {
     display: flex;
     flex-direction: row;
+    gap: 2rem;
+    width: 60%;
 }
 
 .kit-slide-image {
@@ -25,12 +26,19 @@
 .kit-slide-text {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    /* gap: 2rem; */
+    width: 100%;
 }
 
 .kit-slide-header {
     font-size: 1.5rem;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin: 0;
 }
 
 .kit-slide-desc {
+    font-family: "Agdasima", serif;
+    font-size: 1.75rem;
 }

@@ -1,4 +1,6 @@
 function ProductPage() {
+    const { product } = useParams();
+
     return (
         <div className="page">
             <h3>The product</h3>

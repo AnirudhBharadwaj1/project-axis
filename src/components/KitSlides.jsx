@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import gladius from "../assets/temp/gladius.jpeg";
 import chroma from "../assets/temp/chroma.jpeg";
+import WhiteButton from "./WhiteButton";
 import "../styles/KitSlides.css";
 
 function KitSlides() {
@@ -43,7 +44,6 @@ function KitSlides() {
             className="kit-slides-div"
             style={{ background: products[slide].bg }}
         >
-            {/* <div className="kit-slide-chevron">‹</div> */}
             <FaChevronLeft
                 size={32}
                 className="kit-slide-chevron"
@@ -56,11 +56,13 @@ function KitSlides() {
                     className="kit-slide-image"
                 />
                 <div className="kit-slide-text">
-                    <h3 className="kit-slide-header">{products[slide].name}</h3>
+                    <h3 className="kit-slide-header">
+                        {products[slide].name.toUpperCase()}
+                    </h3>
                     <p className="kit-slide-desc">{products[slide].desc}</p>
+                    <WhiteButton text="Buy Now" link="/product/12345" />
                 </div>
             </div>
-            {/* <div className="kit-slide-chevron">›</div> */}
             <FaChevronRight
                 size={32}
                 className="kit-slide-chevron"
