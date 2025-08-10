@@ -1,12 +1,19 @@
-.product-card-div {
+.product-card {
     display: flex;
     flex-direction: column;
+    text-decoration: none;
+    background: transparent;
+    align-items: center;
 }
 
 .product-card-image {
-    /*  */
+    width: 20rem;
+    height: 20rem;
 }
 
 .product-card-name {
-    /*  */
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
 }

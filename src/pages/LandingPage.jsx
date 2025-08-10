@@ -13,9 +13,12 @@ function LandingPage() {
                 const res = await fetch("http://localhost:5000/getProducts");
 
                 const data = await res.json();
-                setProducts(data);
 
-                // TODO: Run a sort on them
+                const sorted = data.sort(
+                    (a, b) => new Date(b.time) - new Date(a.time)
+                );
+
+                setProducts(sorted);
             } catch (error) {
                 console.error(
                     "Error fetching products on frontend side:",

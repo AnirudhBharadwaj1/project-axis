@@ -26,15 +26,13 @@
 .kit-slide-text {
     display: flex;
     flex-direction: column;
-    /* gap: 2rem; */
     width: 100%;
 }
 
 .kit-slide-header {
-    font-size: 1.5rem;
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin: 0;
 }
 

@@ -1,8 +1,10 @@
+import "../styles/Footer.css";
+
 function Footer() {
     return (
-        <div>
+        <footer className="footer-div">
             <h3>Copyright MEE!!!</h3>
-        </div>
+        </footer>
     );
 }
 

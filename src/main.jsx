@@ -12,7 +12,7 @@ createRoot(document.getElementById("root")).render(
         <Router>
             <Routes>
                 <Route path="/" element={<LandingPage />} />
-                <Route path="/shop/:filter" element={<ShopPage />} />
+                <Route path="/shop/:filter?" element={<ShopPage />} />
                 <Route path="/login" element={<LoginPage />} />
 
                 {/* TODO: Make sure this naming convention is fine */}

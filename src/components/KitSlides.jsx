@@ -8,8 +8,6 @@ function KitSlides({ products }) {
     const [slide, setSlide] = useState(0);
     const displayProducts = products.slice(0, 3);
 
-    console.log("DEBUG: displayProducts:", displayProducts);
-
     // Go to the next slide
     const nextSlide = () => {
         setSlide((slide + 1) % 3);
@@ -50,7 +48,7 @@ function KitSlides({ products }) {
                     <WhiteButton
                         text="Buy Now"
                         link={displayProducts[slide].productLink}
-                        style={{ marginTop: "auto" }}
+                        style={{ marginTop: "auto", marginBottom: "4rem" }}
                     />
                 </div>
             </div>
