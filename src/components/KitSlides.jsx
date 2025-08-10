@@ -6,21 +6,46 @@ import "../styles/KitSlides.css";
 
 function KitSlides({ products }) {
     const [slide, setSlide] = useState(0);
+    const [fading, setFading] = useState(false);
     const displayProducts = products.slice(0, 3);
 
     // Go to the next slide
     const nextSlide = () => {
-        setSlide((slide + 1) % 3);
+        setFading(true);
+
+        setTimeout(() => {
+            setSlide((slide + 1) % 3);
+            setFading(false);
+        }, 500);
     };
 
     // Go to the previous slide
     const prevSlide = () => {
-        if (slide === 0) {
-            setSlide(2);
-        } else {
-            setSlide(slide - 1);
-        }
+        setFading(true);
+
+        setTimeout(() => {
+            if (slide === 0) {
+                setSlide(2);
+            } else {
+                setSlide(slide - 1);
+            }
+            setFading(false);
+        }, 500);
     };
+
+    // Automatically change slides
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setFading(true);
+
+            setTimeout(() => {
+                setSlide((prev) => (prev + 1) % 3);
+                setFading(false);
+            }, 500);
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [displayProducts.length]);
 
     return (
         <div
@@ -32,7 +57,12 @@ function KitSlides({ products }) {
                 className="kit-slide-chevron"
                 onClick={prevSlide}
             />
-            <div className="kit-slide-content">
+            <div
+                className={`kit-slide-content ${
+                    fading ? "kit-slide-fade-out" : "kit-slide-fade-in"
+                }`}
+                key={slide}
+            >
                 <img
                     src={gladius}
                     alt="kit image"

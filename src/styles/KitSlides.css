@@ -4,6 +4,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 2rem 2rem;
+    /* position: fixed; */
 }
 
 .kit-slide-chevron {
@@ -39,4 +40,32 @@
 .kit-slide-desc {
     font-family: "Agdasima", serif;
     font-size: 1.75rem;
+}
+
+.kit-slide-fade-in {
+    opacity: 1;
+    animation: fadeIn 0.5s ease-in forwards;
+}
+
+.kit-slide-fade-out {
+    opacity: 0;
+    animation: fadeOut 0.5s ease-out backwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }

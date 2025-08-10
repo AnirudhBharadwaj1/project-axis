@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "../styles/LandingPage.css";
 import Navbar from "../components/Navbar";
 import KitSlides from "../components/KitSlides";
+import Footer from "../components/Footer";
 
 function LandingPage() {
     const [products, setProducts] = useState([]);
@@ -34,6 +35,8 @@ function LandingPage() {
         <div className="page">
             <Navbar />
             {products.length > 0 && <KitSlides products={products} />}
+            <div style={{ height: "100rem" }} />
+            <Footer />
         </div>
     );
 }
