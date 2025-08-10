@@ -1,31 +1,14 @@
 import { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import gladius from "../assets/temp/gladius.jpeg";
-import chroma from "../assets/temp/chroma.jpeg";
 import WhiteButton from "./WhiteButton";
 import "../styles/KitSlides.css";
 
-function KitSlides() {
+function KitSlides({ products }) {
     const [slide, setSlide] = useState(0);
+    const displayProducts = products.slice(0, 3);
 
-    // TODO: Pull this from the db in the future
-    // List of product objects
-    const products = [
-        {
-            image: gladius,
-            name: "Gladius Drumkit",
-            desc: "The Gladius Drumkit focuses on delivering hard, punchy sounds to your beat. Meant to be used for trap and hip hop, this drum kit provides essential flavor to your bounce.",
-            bg: "linear-gradient(to right, #ffaaa9 0%, #dd3f3e 50%, #ffaaa9 100%)",
-            productLink: "/product/12345/",
-        },
-        {
-            image: chroma,
-            name: "Chroma FX Kit",
-            desc: "This FX pack be crazy crodie",
-            bg: "linear-gradient(to right, #ffaaa9 0%, #dd3f3e 50%, #ffaaa9 100%)",
-            productLink: "/product/56789",
-        },
-    ];
+    console.log("DEBUG: displayProducts:", displayProducts);
 
     // Go to the next slide
     const nextSlide = () => {
@@ -44,7 +27,7 @@ function KitSlides() {
     return (
         <div
             className="kit-slides-div"
-            style={{ background: products[slide].bg }}
+            style={{ background: displayProducts[slide].background }}
         >
             <FaChevronLeft
                 size={40}
@@ -53,18 +36,20 @@ function KitSlides() {
             />
             <div className="kit-slide-content">
                 <img
-                    src={products[slide].image}
+                    src={gladius}
                     alt="kit image"
                     className="kit-slide-image"
                 />
                 <div className="kit-slide-text">
                     <h3 className="kit-slide-header">
-                        {products[slide].name.toUpperCase()}
+                        {displayProducts[slide].name.toUpperCase()}
                     </h3>
-                    <p className="kit-slide-desc">{products[slide].desc}</p>
+                    <p className="kit-slide-desc">
+                        {displayProducts[slide].desc}
+                    </p>
                     <WhiteButton
                         text="Buy Now"
-                        link={products[slide].productLink}
+                        link={displayProducts[slide].productLink}
                         style={{ marginTop: "auto" }}
                     />
                 </div>

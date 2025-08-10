@@ -22,14 +22,25 @@ const supabase = createClient(
 // Gets the products list
 app.get("/getProducts", async (req, res) => {
     const { data, error } = await supabase.from("products").select("*");
-    console.log({ data, error });
 
     if (error) {
         console.error("Error retrieving products list:", error);
         return res.status(500).json({ error: error.message });
     }
 
-    res.json(data);
+    // TODO: RETRIEVE MEDIA AS WELL AND STORE IN PRODUCTS
+
+    const products = data.map((product) => ({
+        name: product.name,
+        desc: product.description,
+        price: product.price,
+        productLink: product.product_link,
+        background: product.background,
+        includes: product.includes,
+        time: product.time,
+    }));
+
+    res.json(products);
 });
 
 app.listen(port, () => {

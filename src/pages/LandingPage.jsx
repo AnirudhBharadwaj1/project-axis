@@ -15,7 +15,7 @@ function LandingPage() {
                 const data = await res.json();
                 setProducts(data);
 
-                console.log("DEBUG PRODUCTS:", data); // log the fresh data directly
+                // TODO: Run a sort on them
             } catch (error) {
                 console.error(
                     "Error fetching products on frontend side:",
@@ -25,12 +25,12 @@ function LandingPage() {
         };
 
         fetchProducts();
-    }, []); // empty dependency array so it runs once
+    }, []);
 
     return (
         <div className="page">
             <Navbar />
-            <KitSlides products={products} />
+            {products.length > 0 && <KitSlides products={products} />}
         </div>
     );
 }
