@@ -42,7 +42,7 @@ function KitSlides({ products }) {
                 setSlide((prev) => (prev + 1) % 3);
                 setFading(false);
             }, 500);
-        }, 5000);
+        }, 8000);
 
         return () => clearInterval(interval);
     }, [displayProducts.length]);
@@ -57,30 +57,32 @@ function KitSlides({ products }) {
                 className="kit-slide-chevron"
                 onClick={prevSlide}
             />
-            <div
-                className={`kit-slide-content ${
-                    fading ? "kit-slide-fade-out" : "kit-slide-fade-in"
-                }`}
-                key={slide}
-            >
-                <img
-                    src={gladius}
-                    alt="kit image"
-                    className="kit-slide-image"
-                />
-                <div className="kit-slide-text">
-                    <h3 className="kit-slide-header">
-                        {displayProducts[slide].name.toUpperCase()}
-                    </h3>
-                    <p className="kit-slide-desc">
-                        {displayProducts[slide].desc}
-                    </p>
-                    <WhiteButton
-                        text="Buy Now"
-                        link={displayProducts[slide].productLink}
-                        style={{ marginTop: "auto", marginBottom: "4rem" }}
+            <div className="kit-slide-column">
+                <div
+                    className={`kit-slide-content ${
+                        fading ? "kit-slide-fade-out" : "kit-slide-fade-in"
+                    }`}
+                    key={slide}
+                >
+                    <img
+                        src={gladius}
+                        alt="kit image"
+                        className="kit-slide-image"
                     />
+                    <div className="kit-slide-text">
+                        <h3 className="kit-slide-header">
+                            {displayProducts[slide].name.toUpperCase()}
+                        </h3>
+                        <p className="kit-slide-desc">
+                            {displayProducts[slide].desc}
+                        </p>
+                    </div>
                 </div>
+                <WhiteButton
+                    text="Buy Now"
+                    link={`/product/` + displayProducts[slide].id}
+                    style={{ marginTop: "auto", marginBottom: "4rem" }}
+                />
             </div>
             <FaChevronRight
                 size={40}

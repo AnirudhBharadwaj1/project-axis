@@ -6,6 +6,7 @@ function Filter({ selectedFilters, setSelectedFilters }) {
         "drum-kits",
         "one-shot-kits",
         "loop-kits",
+        "fx-kits",
     ];
 
     const filterOptionsDisplay = {
@@ -13,10 +14,18 @@ function Filter({ selectedFilters, setSelectedFilters }) {
         "drum-kits": "Drum Kits",
         "one-shot-kits": "One Shot Kits",
         "loop-kits": "Loop Kits",
+        "fx-kits": "FX Kits",
     };
 
     const handleFilterChange = (e) => {
-        //
+        const { value, checked } = e.target;
+        setSelectedFilters((prev) => {
+            if (checked) {
+                return [...prev, value];
+            } else {
+                return prev.filter((f) => f !== value);
+            }
+        });
     };
 
     return (
@@ -28,6 +37,7 @@ function Filter({ selectedFilters, setSelectedFilters }) {
                         value={option}
                         onChange={handleFilterChange}
                         className="filter-checkbox"
+                        active={option in selectedFilters}
                     />
                     {filterOptionsDisplay[option]}
                 </label>

@@ -7,6 +7,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .navbar-title {
@@ -18,7 +21,7 @@
 .navbar-routes {
     display: flex;
     flex-direction: row;
-    gap: 8rem;
+    gap: 5rem;
 }
 
 .navbar-link {

@@ -10,17 +10,20 @@ function Navbar() {
                 <Link to="/" className="navbar-link">
                     Home
                 </Link>
-                <Link to="/shop/free-kits" className="navbar-link">
-                    Free Kits
-                </Link>
                 <Link to="/shop/drum-kits" className="navbar-link">
                     Drum Kits
                 </Link>
                 <Link to="/shop/one-shot-kits" className="navbar-link">
                     One Shot Kits
                 </Link>
+                <Link to="/shop/fx-kits" className="navbar-link">
+                    FX Kits
+                </Link>
                 <Link to="/shop/loop-kits" className="navbar-link">
                     Loop Kits
+                </Link>
+                <Link to="/shop/free-kits" className="navbar-link">
+                    Free Kits
                 </Link>
             </div>
             <div className="navbar-account-div">

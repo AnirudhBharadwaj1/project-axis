@@ -31,10 +31,10 @@ app.get("/getProducts", async (req, res) => {
     // TODO: RETRIEVE MEDIA AS WELL AND STORE IN PRODUCTS
 
     const products = data.map((product) => ({
+        id: product.id,
         name: product.name,
         desc: product.description,
         price: product.price,
-        productLink: product.product_link,
         background: product.background,
         includes: product.includes,
         time: product.time,

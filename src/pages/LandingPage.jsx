@@ -34,8 +34,18 @@ function LandingPage() {
     return (
         <div className="page">
             <Navbar />
-            {products.length > 0 && <KitSlides products={products} />}
-            <div style={{ height: "100rem" }} />
+            <div style={{ position: "relative" }}>
+                {products.length > 0 && <KitSlides products={products} />}
+            </div>
+            {/* TODO: Remove this div */}
+            <div
+                style={{
+                    height: "100rem",
+                    zIndex: "10",
+                    position: "relative",
+                    backgroundColor: "white",
+                }}
+            ></div>
             <Footer />
         </div>
     );
