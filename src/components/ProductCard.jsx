@@ -4,7 +4,7 @@ import gladius from "../assets/temp/gladius.jpeg";
 
 function ProductCard({ product }) {
     return (
-        <a href={`/product/product.id`} className="product-card">
+        <a href={`/product/` + product.id} className="product-card">
             <img
                 // src={product.image}      // TODO: Change it back to this
                 src={gladius}

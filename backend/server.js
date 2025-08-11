@@ -39,6 +39,7 @@ app.get("/getProducts", async (req, res) => {
         includes: product.includes,
         time: product.time,
         tags: product.tags.split(" "),
+        numSold: product.num_sold,
     }));
 
     res.json(products);

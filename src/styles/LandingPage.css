@@ -5,3 +5,10 @@
     margin: 0;
     padding: 0;
 }
+
+.shop-now-div {
+    background-color: #303030;
+    height: 50rem;
+    z-index: 10;
+    position: relative;
+}

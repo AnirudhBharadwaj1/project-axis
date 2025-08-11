@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "../styles/LandingPage.css";
 import Navbar from "../components/Navbar";
 import KitSlides from "../components/KitSlides";
+import BestSelling from "../components/BestSelling";
+import WhiteButton from "../components/WhiteButton";
 import Footer from "../components/Footer";
 
 function LandingPage() {
@@ -32,20 +34,19 @@ function LandingPage() {
     }, []);
 
     return (
-        <div className="page">
+        <div className="page scrollbar">
             <Navbar />
-            <div style={{ position: "relative" }}>
-                {products.length > 0 && <KitSlides products={products} />}
-            </div>
+            {products.length > 0 && <KitSlides products={products} />}
             {/* TODO: Remove this div */}
-            <div
-                style={{
-                    height: "100rem",
-                    zIndex: "10",
-                    position: "relative",
-                    backgroundColor: "white",
-                }}
-            ></div>
+            {products.length > 0 && <BestSelling products={products} />}
+            <div className="shop-now-div">
+                {/*  */}
+                <h3 className="section-title" style={{ textAlign: "center" }}>
+                    Browse the Shop
+                </h3>
+                <h3>Filler</h3>
+                <WhiteButton text={"Shop Now"} link={"/shop"} />
+            </div>
             <Footer />
         </div>
     );

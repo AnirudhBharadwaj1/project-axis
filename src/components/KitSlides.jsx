@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import gladius from "../assets/temp/gladius.jpeg";
 import WhiteButton from "./WhiteButton";
 import "../styles/KitSlides.css";
+
+import gladius from "../assets/temp/gladius.jpeg";
 
 function KitSlides({ products }) {
     const [slide, setSlide] = useState(0);
@@ -65,6 +66,7 @@ function KitSlides({ products }) {
                     key={slide}
                 >
                     <img
+                        // TODO: Change this to use product.image
                         src={gladius}
                         alt="kit image"
                         className="kit-slide-image"

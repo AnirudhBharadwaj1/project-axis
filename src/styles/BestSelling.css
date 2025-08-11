@@ -1,0 +1,7 @@
+.best-selling-div {
+    background-color: #1f1f1f;
+    height: 54rem;
+    z-index: 10;
+    position: sticky;
+    top: 6rem;
+}
