@@ -38,7 +38,7 @@ function ShopPage() {
     }, []);
 
     return (
-        <div className="page">
+        <div className="page" style={{ height: "100vh" }}>
             <Navbar />
             <div className="shop-page-content">
                 <Filter

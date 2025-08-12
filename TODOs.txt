@@ -1,3 +1,2 @@
 - Add kit slide transition
-- Fix the position sticky issue
 - Make filters work

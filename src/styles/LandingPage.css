@@ -12,3 +12,21 @@
     z-index: 10;
     position: relative;
 }
+
+.browse-shop-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.browse-shop-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.browse-shop-header {
+    /*  */
+}
+
+.browse-shop-desc {
+    /*  */
+}

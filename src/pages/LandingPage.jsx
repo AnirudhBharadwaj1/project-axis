@@ -6,6 +6,9 @@ import BestSelling from "../components/BestSelling";
 import WhiteButton from "../components/WhiteButton";
 import Footer from "../components/Footer";
 
+import gladius from "../assets/temp/gladius.jpeg";
+import gladiusfree from "../assets/temp/gladiusfree.jpeg";
+
 function LandingPage() {
     const [products, setProducts] = useState([]);
 
@@ -41,11 +44,24 @@ function LandingPage() {
             {products.length > 0 && <BestSelling products={products} />}
             <div className="shop-now-div">
                 {/*  */}
-                <h3 className="section-title" style={{ textAlign: "center" }}>
-                    Browse the Shop
-                </h3>
+                <h3 className="section-title">Browse the Shop</h3>
+                <div className="browse-shop-row">
+                    <img src={gladius} alt="Shop Image" />
+                    <div className="browse-shop-col">
+                        <h3 className="browse-shop-header"></h3>
+                        <p className="browse-shop-desc"></p>
+                    </div>
+                </div>
+                <div className="browse-shop-row">
+                    <div className="browse-shop-col">
+                        <h3 className="browse-shop-header"></h3>
+                        <p className="browse-shop-desc"></p>
+                    </div>
+                    <img src={gladiusfree} alt="Shop Image" />
+                </div>
                 <h3>Filler</h3>
-                <WhiteButton text={"Shop Now"} link={"/shop"} />
+                <WhiteButton text={"Visit Shop"} link={"/shop"} />
+                <WhiteButton text={"Visit Free Kits"} link={"/free"} />
             </div>
             <Footer />
         </div>

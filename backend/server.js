@@ -19,7 +19,7 @@ const supabase = createClient(
     process.env.SUPABASE_ANON_KEY
 );
 
-// Gets the products list
+// Gets the list of products
 app.get("/getProducts", async (req, res) => {
     const { data, error } = await supabase.from("products").select("*");
 
@@ -43,6 +43,26 @@ app.get("/getProducts", async (req, res) => {
     }));
 
     res.json(products);
+});
+
+// Gets the list of free products
+app.get("/getFree", async (req, res) => {
+    const { data, error } = await supabase.from("free").select("*");
+
+    if (error) {
+        console.error("Error retrieving free products:", error);
+        return res.status(500).json({ error: error.message });
+    }
+
+    const freebies = data.map((product) => ({
+        id: product.id,
+        name: product.name,
+        desc: product.description,
+        includes: product.includes,
+        time: product.time,
+    }));
+
+    res.json(freebies);
 });
 
 app.listen(port, () => {

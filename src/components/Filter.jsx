@@ -2,19 +2,17 @@ import "../styles/Filter.css";
 
 function Filter({ selectedFilters, setSelectedFilters }) {
     const filterOptions = [
-        "free-kits",
         "drum-kits",
         "one-shot-kits",
-        "loop-kits",
         "fx-kits",
+        "loop-kits",
     ];
 
     const filterOptionsDisplay = {
-        "free-kits": "Free Kits",
         "drum-kits": "Drum Kits",
         "one-shot-kits": "One Shot Kits",
-        "loop-kits": "Loop Kits",
         "fx-kits": "FX Kits",
+        "loop-kits": "Loop Kits",
     };
 
     const handleFilterChange = (e) => {

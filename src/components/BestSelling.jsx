@@ -8,9 +8,7 @@ function BestSelling({ products }) {
 
     return (
         <div className="best-selling-div">
-            <h3 className="section-title" style={{ textAlign: "center" }}>
-                Best Sellers
-            </h3>
+            <h3 className="section-title">Best Sellers</h3>
             {getBestSellers().map((product, key) => (
                 <p key={key}>{product.name}</p>
             ))}
