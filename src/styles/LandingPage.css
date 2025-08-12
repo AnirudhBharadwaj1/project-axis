@@ -23,6 +23,11 @@
     flex-direction: column;
 }
 
+.browse-shop-image {
+    height: 15rem;
+    width: 15rem;
+}
+
 .browse-shop-header {
     /*  */
 }

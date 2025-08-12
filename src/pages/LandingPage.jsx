@@ -46,18 +46,30 @@ function LandingPage() {
                 {/*  */}
                 <h3 className="section-title">Browse the Shop</h3>
                 <div className="browse-shop-row">
-                    <img src={gladius} alt="Shop Image" />
+                    <img
+                        src={gladius}
+                        alt="Shop Image"
+                        className="browse-shop-image"
+                    />
                     <div className="browse-shop-col">
-                        <h3 className="browse-shop-header"></h3>
+                        <h3 className="browse-shop-header">
+                            Discover the Shop
+                        </h3>
                         <p className="browse-shop-desc"></p>
                     </div>
                 </div>
                 <div className="browse-shop-row">
                     <div className="browse-shop-col">
-                        <h3 className="browse-shop-header"></h3>
+                        <h3 className="browse-shop-header">
+                            Discover Free Kits
+                        </h3>
                         <p className="browse-shop-desc"></p>
                     </div>
-                    <img src={gladiusfree} alt="Shop Image" />
+                    <img
+                        src={gladiusfree}
+                        alt="Shop Image"
+                        className="browse-shop-image"
+                    />
                 </div>
                 <h3>Filler</h3>
                 <WhiteButton text={"Visit Shop"} link={"/shop"} />
