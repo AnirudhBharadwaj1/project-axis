@@ -40,21 +40,34 @@ function LandingPage() {
         <div className="page scrollbar">
             <Navbar />
             {products.length > 0 && <KitSlides products={products} />}
-            {/* TODO: Remove this div */}
             {products.length > 0 && <BestSelling products={products} />}
             <div className="shop-now-div">
                 {/*  */}
-                <h3 className="section-title">Browse the Shop</h3>
+                <h3 className="section-title">Shop Now</h3>
                 <div className="browse-shop-row">
+                    <a href="/shop" className="browse-shop-image-container">
+                        <img
+                            src={gladius}
+                            alt="Shop Image"
+                            className="browse-shop-image"
+                        />
+                        <h3 className="browse-shop-header">
+                            Explore Sound Packs
+                        </h3>
+                    </a>
+                    <p className="browse-shop-desc">
+                        Explore the shop and find the kits you need to take your
+                        beats to the next level.
+                    </p>
+                </div>
+
+                {/* <div className="browse-shop-row">
                     <img
                         src={gladius}
                         alt="Shop Image"
                         className="browse-shop-image"
                     />
                     <div className="browse-shop-col">
-                        <h3 className="browse-shop-header">
-                            Discover the Shop
-                        </h3>
                         <p className="browse-shop-desc"></p>
                     </div>
                 </div>
@@ -70,10 +83,8 @@ function LandingPage() {
                         alt="Shop Image"
                         className="browse-shop-image"
                     />
-                </div>
+                </div> */}
                 <h3>Filler</h3>
-                <WhiteButton text={"Visit Shop"} link={"/shop"} />
-                <WhiteButton text={"Visit Free Kits"} link={"/free"} />
             </div>
             <Footer />
         </div>
