@@ -54,7 +54,7 @@ function KitSlides({ products }) {
             style={{ background: displayProducts[slide].background }}
         >
             <FaChevronLeft
-                size={40}
+                size={50}
                 className="kit-slide-chevron"
                 onClick={prevSlide}
             />
@@ -81,13 +81,13 @@ function KitSlides({ products }) {
                     </div>
                 </div>
                 <WhiteButton
-                    text="Buy Now"
+                    text="Download Now"
                     link={`/product/` + displayProducts[slide].id}
                     style={{ marginTop: "auto", marginBottom: "4rem" }}
                 />
             </div>
             <FaChevronRight
-                size={40}
+                size={50}
                 className="kit-slide-chevron"
                 onClick={nextSlide}
             />

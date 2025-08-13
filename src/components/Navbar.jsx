@@ -22,9 +22,9 @@ function Navbar() {
                 <Link to="/shop/loop-kits" className="navbar-link">
                     Loop Kits
                 </Link>
-                <Link to="/free" className="navbar-link">
+                {/* <Link to="/free" className="navbar-link">
                     Free Kits
-                </Link>
+                </Link> */}
             </div>
             <div className="navbar-account-div">
                 <FiUser size={30} />
