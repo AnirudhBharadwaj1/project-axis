@@ -4,62 +4,74 @@ import WhiteButton from "./WhiteButton";
 import "../styles/KitSlides.css";
 import gladius from "../assets/temp/gladius.jpeg";
 
+const FADE_MS = 600; // keep in sync with CSS var --fadeMs
+
 function KitSlides({ products }) {
-    const [slide, setSlide] = useState(0);
-    const [bg1, setBg1] = useState(products[0].background); // bottom layer
-    const [bg2, setBg2] = useState(products[0].background); // top layer
-    const [textFade, setTextFade] = useState(false);
-    const [fadeTopIn, setFadeTopIn] = useState(false);
     const displayProducts = products.slice(0, 3);
+    const len = displayProducts.length || 1;
 
-    const crossfadeTo = (newIndex) => {
-        const newBg = displayProducts[newIndex].background;
-        setBg2(newBg); // put new gradient in top layer
-        setFadeTopIn(true); // fade it in
-        setTextFade(true);
+    const [slide, setSlide] = useState(0);
+    const [isFading, setIsFading] = useState(false);
 
+    // Two-layer gradient crossfade
+    const [bottomBg, setBottomBg] = useState(
+        displayProducts[0]?.background || "linear-gradient(90deg,#fff,#eee)"
+    );
+    const [topBg, setTopBg] = useState(
+        displayProducts[0]?.background || "linear-gradient(90deg,#fff,#eee)"
+    );
+
+    const crossfadeTo = (nextIndex) => {
+        if (isFading || len < 2) return;
+        const idx =
+            ((typeof nextIndex === "function" ? nextIndex(slide) : nextIndex) +
+                len) %
+            len;
+        const newBg = displayProducts[idx].background;
+
+        // Start both animations in the same frame
+        setTopBg(newBg);
+        setIsFading(true);
+
+        // After fade: commit slide & background
         setTimeout(() => {
-            setSlide(newIndex);
-            setBg1(newBg); // make it the bottom layer after fade
-            setFadeTopIn(false); // hide top layer again
-            setTextFade(false);
-        }, 500); // matches CSS transition duration
+            setSlide(idx);
+            setBottomBg(newBg);
+            setIsFading(false);
+        }, FADE_MS);
     };
 
-    const nextSlide = () => {
-        crossfadeTo((slide + 1) % 3);
-    };
+    const nextSlide = () => crossfadeTo((slide + 1) % len);
+    const prevSlide = () => crossfadeTo((slide - 1 + len) % len);
 
-    const prevSlide = () => {
-        crossfadeTo(slide === 0 ? 2 : slide - 1);
-    };
-
+    // Auto-advance without stale closure
     useEffect(() => {
-        const interval = setInterval(() => {
-            crossfadeTo((slide + 1) % 3);
-        }, 3000); // TODO: Change this to 8s
-
-        return () => clearInterval(interval);
-    }, [slide]);
+        const id = setTimeout(() => {
+            nextSlide();
+        }, 8000);
+        return () => clearTimeout(id);
+    }, [slide, len]); // re-arm after each change
 
     return (
         <div
             className="kit-slides-div"
             style={{
-                "--bg1": bg1,
-                "--bg2": bg2,
-                "--top-opacity": fadeTopIn ? 1 : 0,
+                "--bottomBg": bottomBg,
+                "--topBg": topBg,
+                "--topOpacity": isFading ? 1 : 0,
+                "--fadeMs": `${FADE_MS}ms`,
             }}
         >
             <FaChevronLeft
                 size={50}
-                className="kit-slide-chevron"
+                className={`kit-slide-chevron ${isFading ? "disabled" : ""}`}
                 onClick={prevSlide}
             />
+
             <div className="kit-slide-column">
                 <div
                     className={`kit-slide-content ${
-                        textFade ? "kit=slide-fade-out" : "kit-slide-fade-in"
+                        isFading ? "kit-slide-fade-out" : "kit-slide-fade-in"
                     }`}
                     key={slide}
                 >
@@ -77,15 +89,17 @@ function KitSlides({ products }) {
                         </p>
                     </div>
                 </div>
+
                 <WhiteButton
                     text="Download Now"
-                    link={`/product/` + displayProducts[slide].id}
+                    link={`/product/${displayProducts[slide].id}`}
                     style={{ marginTop: "auto", marginBottom: "4rem" }}
                 />
             </div>
+
             <FaChevronRight
                 size={50}
-                className="kit-slide-chevron"
+                className={`kit-slide-chevron ${isFading ? "disabled" : ""}`}
                 onClick={nextSlide}
             />
         </div>

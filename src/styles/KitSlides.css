@@ -8,6 +8,8 @@
     top: 6rem;
     z-index: 1;
     height: 40rem;
+
+    overflow: hidden;
 }
 
 .kit-slides-div::before,
@@ -20,28 +22,40 @@
     opacity: 1;
     transition: opacity 0.5s ease; */
 
-    content: "";
+    /* content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
     transition: opacity 0.8s ease;
-    background: transparent;
+    background: transparent; */
+
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1; /* behind content */
 }
 
-.kit-slides-div::before {
-    background: var(--bg1);
+/* .kit-slides-div::before {
+    background: var(--bottomBg);
     opacity: 1;
 }
 
 .kit-slides-div::after {
-    background: var(--bg2);
+    background: var(--topBg);
     opacity: var(--top-opacity);
     transition: opacity 0.5s ease;
+} */
+
+.kit-slides-div::before {
+    background: var(--bottomBg);
+    opacity: 1;
 }
 
-/* .kit-slides-div.fade-out::before {
-    opacity: 0;
-} */
+.kit-slides-div::after {
+    background: var(--topBg);
+    opacity: var(--topOpacity);
+    transition: opacity var(--fadeMs) ease; /* sync with text fade */
+}
 
 .kit-slide-chevron {
     color: black;
