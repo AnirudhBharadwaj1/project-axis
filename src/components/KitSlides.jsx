@@ -2,56 +2,54 @@ import { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import WhiteButton from "./WhiteButton";
 import "../styles/KitSlides.css";
-
 import gladius from "../assets/temp/gladius.jpeg";
 
 function KitSlides({ products }) {
     const [slide, setSlide] = useState(0);
-    const [fading, setFading] = useState(false);
+    const [bg1, setBg1] = useState(products[0].background); // bottom layer
+    const [bg2, setBg2] = useState(products[0].background); // top layer
+    const [textFade, setTextFade] = useState(false);
+    const [fadeTopIn, setFadeTopIn] = useState(false);
     const displayProducts = products.slice(0, 3);
 
-    // Go to the next slide
+    const crossfadeTo = (newIndex) => {
+        const newBg = displayProducts[newIndex].background;
+        setBg2(newBg); // put new gradient in top layer
+        setFadeTopIn(true); // fade it in
+        setTextFade(true);
+
+        setTimeout(() => {
+            setSlide(newIndex);
+            setBg1(newBg); // make it the bottom layer after fade
+            setFadeTopIn(false); // hide top layer again
+            setTextFade(false);
+        }, 500); // matches CSS transition duration
+    };
+
     const nextSlide = () => {
-        setFading(true);
-
-        setTimeout(() => {
-            setSlide((slide + 1) % 3);
-            setFading(false);
-        }, 500);
+        crossfadeTo((slide + 1) % 3);
     };
 
-    // Go to the previous slide
     const prevSlide = () => {
-        setFading(true);
-
-        setTimeout(() => {
-            if (slide === 0) {
-                setSlide(2);
-            } else {
-                setSlide(slide - 1);
-            }
-            setFading(false);
-        }, 500);
+        crossfadeTo(slide === 0 ? 2 : slide - 1);
     };
 
-    // Automatically change slides
     useEffect(() => {
         const interval = setInterval(() => {
-            setFading(true);
-
-            setTimeout(() => {
-                setSlide((prev) => (prev + 1) % 3);
-                setFading(false);
-            }, 500);
-        }, 8000);
+            crossfadeTo((slide + 1) % 3);
+        }, 3000); // TODO: Change this to 8s
 
         return () => clearInterval(interval);
-    }, [displayProducts.length]);
+    }, [slide]);
 
     return (
         <div
             className="kit-slides-div"
-            style={{ background: displayProducts[slide].background }}
+            style={{
+                "--bg1": bg1,
+                "--bg2": bg2,
+                "--top-opacity": fadeTopIn ? 1 : 0,
+            }}
         >
             <FaChevronLeft
                 size={50}
@@ -61,12 +59,11 @@ function KitSlides({ products }) {
             <div className="kit-slide-column">
                 <div
                     className={`kit-slide-content ${
-                        fading ? "kit-slide-fade-out" : "kit-slide-fade-in"
+                        textFade ? "kit=slide-fade-out" : "kit-slide-fade-in"
                     }`}
                     key={slide}
                 >
                     <img
-                        // TODO: Change this to use product.image
                         src={gladius}
                         alt="kit image"
                         className="kit-slide-image"
