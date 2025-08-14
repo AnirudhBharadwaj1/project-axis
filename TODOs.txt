@@ -1,4 +1,2 @@
-- Make product cards slowly rise up
-- Address the issue of changing filter keeping the link the same
 - Finish landing page (not including videos)
 - Set up db for media

@@ -17,3 +17,16 @@
     font-weight: 700;
     font-size: 1.5rem;
 }
+
+.fade-product-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeProductIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeProductIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
