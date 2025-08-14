@@ -29,13 +29,19 @@ function Filter({ selectedFilters, setSelectedFilters }) {
     return (
         <div className="filter-div">
             {filterOptions.map((option) => (
-                <label key={option} className="filter-checkbox-label">
+                // <label key={option} className="filter-checkbox-label">
+                <label
+                    key={option}
+                    className={`filter-checkbox-label ${
+                        selectedFilters.includes(option) ? "active" : ""
+                    }`}
+                >
                     <input
                         type="checkbox"
                         value={option}
                         onChange={handleFilterChange}
                         className="filter-checkbox"
-                        active={option in selectedFilters}
+                        checked={selectedFilters.includes(option)}
                     />
                     {filterOptionsDisplay[option]}
                 </label>

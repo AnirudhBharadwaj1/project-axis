@@ -12,6 +12,7 @@ function ShopPage() {
         filter ? [filter] : []
     );
     const [products, setProducts] = useState([]);
+    const [selectedProducts, setSelectedProducts] = useState([]);
 
     // Get the products from the database
     useEffect(() => {
@@ -37,6 +38,24 @@ function ShopPage() {
         fetchProducts();
     }, []);
 
+    // Update filters
+    useEffect(() => {
+        setSelectedFilters([filter]);
+    }, [filter]);
+
+    // Update products on display
+    useEffect(() => {
+        if (selectedFilters.length === 0) {
+            setSelectedProducts(products);
+        } else {
+            setSelectedProducts(
+                products.filter((product) =>
+                    product.tags.some((tag) => selectedFilters.includes(tag))
+                )
+            );
+        }
+    }, [products, selectedFilters]);
+
     return (
         <div className="page" style={{ height: "100vh" }}>
             <Navbar />
@@ -45,7 +64,7 @@ function ShopPage() {
                     selectedFilters={selectedFilters}
                     setSelectedFilters={setSelectedFilters}
                 />
-                {products.map((product, key) => (
+                {selectedProducts.map((product, key) => (
                     <ProductCard key={key} product={product} />
                 ))}
             </div>

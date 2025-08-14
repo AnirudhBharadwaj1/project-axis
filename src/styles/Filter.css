@@ -1,18 +1,64 @@
 .filter-div {
-    width: 10rem;
-    height: 30rem;
+    width: 12rem;
+    padding: 1rem;
+    height: fit-content;
     position: sticky;
     background: #151515;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
+    gap: 0.75rem;
 }
 
 .filter-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     font-family: "Agdasima", serif;
     font-size: 1.3rem;
+    color: #ddd;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.filter-checkbox-label:hover {
+    background: rgba(255, 255, 255, 0.05);
     color: white;
 }
 
+.filter-checkbox-label.active {
+    background: linear-gradient(135deg, #999999, #bebebe);
+    color: black;
+}
+
 .filter-checkbox {
-    /* background: white; */
+    appearance: none;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid #999;
+    border-radius: 0.25rem;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: border 0.2s ease, background 0.2s ease;
+}
+
+.filter-checkbox:checked {
+    border-color: rgb(43, 43, 43);
+    background: rgb(43, 43, 43);
+}
+
+.filter-checkbox:checked::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
 }
