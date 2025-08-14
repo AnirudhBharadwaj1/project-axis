@@ -5,3 +5,59 @@
     position: sticky;
     top: 6rem;
 }
+
+.best-selling-display {
+    display: flex;
+    flex-direction: row;
+    gap: 8rem;
+    justify-content: space-evenly;
+    margin-top: 5rem;
+}
+
+.best-selling-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: float 4s ease-in-out infinite;
+    will-change: transform;
+    border-radius: 1rem;
+    padding: 1rem;
+    text-decoration: none;
+}
+
+/* Floating animation */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Magnetic hover */
+.best-selling-product.hovered {
+    transform: perspective(600px) rotateX(8deg) rotateY(-8deg) scale(1.05);
+    border: 3px solid transparent;
+    border-radius: 1rem;
+    background: linear-gradient(#1f1f1f, #1f1f1f) padding-box,
+        /* inner background */ var(--glow) border-box; /* gradient border */
+    background-clip: padding-box, border-box;
+}
+
+.best-selling-image {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 1rem;
+}
+
+.best-selling-header {
+    color: white;
+    font-family: "Montserrat", serif;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}

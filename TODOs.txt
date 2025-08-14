@@ -1,2 +1,3 @@
 - Finish landing page (not including videos)
+- Make the cards not push each other to the side when hovered
 - Set up db for media
