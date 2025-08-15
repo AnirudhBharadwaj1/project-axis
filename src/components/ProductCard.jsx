@@ -11,7 +11,7 @@ function ProductCard({ product }) {
             <img
                 // src={product.image}      // TODO: Change it back to this
                 src={gladius}
-                alt="Product Image"
+                alt="Product image"
                 className="product-card-image"
             />
             <h3 className="product-card-name">{product.name.toUpperCase()}</h3>

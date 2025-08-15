@@ -10,13 +10,7 @@ function ProductPage() {
     // Get the product based on the id
     useEffect(() => {
         const fetchProduct = async (productId) => {
-            console.log("DEBUG FRONTEND:", productId);
-
             try {
-                // const res = await fetch(
-                //     `http://localhost:5000/getProductById/${productId}`
-                // );
-                // const res = await fetch("http://localhost:5000/getProductById");
                 const res = await fetch(
                     `http://localhost:5000/getProductById?productId=${productId}`
                 );

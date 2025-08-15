@@ -28,7 +28,7 @@ function BestSelling({ products }) {
                     >
                         <img
                             src={gladius}
-                            alt="Product Display"
+                            alt="Product display image"
                             className="best-selling-image"
                         />
                         <h3 className="best-selling-header">

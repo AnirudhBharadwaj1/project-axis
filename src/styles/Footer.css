@@ -1,6 +1,32 @@
 .footer-div {
     background-color: #151515;
-    color: white;
     height: 5rem;
     margin-top: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem 4rem;
+}
+
+.footer-logo {
+    height: 3rem;
+    width: 3rem;
+}
+
+.footer-copyright {
+    color: rgb(128, 128, 128);
+    font-family: "Agdasima", serif;
+    font-size: 1.25rem;
+}
+
+.footer-socials-div {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.footer-socials {
+    color: rgb(128, 128, 128);
+    text-decoration: none;
 }

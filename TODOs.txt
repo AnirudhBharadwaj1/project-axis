@@ -1,5 +1,21 @@
-- Finish landing page (not including videos)
+--------------------- WEEK 1 ---------------------
+Objective: Finish general frontend
 - Set up db for media
+- Finish footer
+- Consider un-freeing everything
+- Finish shop page
+- Finish product page
 - Make loading animation
+- Fix YouTube link for footer
+
+--------------------- WEEK 2 ---------------------
+Objective: Finish login related functionality
 - Make account dropdown
 - Make login page
+- Make signup page
+- Make account details page (includes downloaded products)
+
+--------------------- WEEK 3 ---------------------
+Objective: Finish admin side
+- Finish admin login page
+- Finish page for adding new kits

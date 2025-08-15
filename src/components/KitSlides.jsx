@@ -77,7 +77,7 @@ function KitSlides({ products }) {
                 >
                     <img
                         src={gladius}
-                        alt="kit image"
+                        alt="Kit image"
                         className="kit-slide-image"
                     />
                     <div className="kit-slide-text">
