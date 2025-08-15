@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import "../styles/ProductPage.css";
+
+import gladius from "../assets/temp/gladius.jpeg";
 
 function ProductPage() {
     const { productId } = useParams();
@@ -29,9 +32,36 @@ function ProductPage() {
     }, []);
 
     return (
-        <div className="page">
+        <div className="page scrollbar">
             <Navbar />
-            {product && <h3>The product: {product.name}</h3>}
+            {product && (
+                <div className="product-page-div">
+                    <div className="product-videos">
+                        {/* PUT THE VIDEOS HERE IN THE FUTURE */}
+                        <img src={gladius} className="product-video" />
+                        <img src={gladius} className="product-video" />
+                        <img src={gladius} className="product-video" />
+                    </div>
+                    <div className="product-details">
+                        <h3 className="product-header">{product.name}</h3>
+                        <h5 className="product-price">{product.price}</h5>
+                        <button className="product-page-button">
+                            Add to Cart
+                        </button>
+                        <button className="product-page-button">Buy Now</button>
+                        <h3 className="product-includes-item">
+                            This pack includes:
+                        </h3>
+                        <ul className="product-includes-section">
+                            {product.includes.map((item, key) => (
+                                <li key={key} className="product-includes-item">
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            )}
             <Footer />
         </div>
     );

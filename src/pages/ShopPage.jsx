@@ -57,16 +57,26 @@ function ShopPage() {
     }, [products, selectedFilters]);
 
     return (
-        <div className="page" style={{ height: "100vh" }}>
+        <div className="page scrollbar">
             <Navbar />
             <div className="shop-page-content">
                 <Filter
                     selectedFilters={selectedFilters}
                     setSelectedFilters={setSelectedFilters}
                 />
-                {selectedProducts.map((product, key) => (
-                    <ProductCard key={key} product={product} />
-                ))}
+                <div className="shop-page-products">
+                    {selectedProducts.map((product, key) => (
+                        <ProductCard key={key} product={product} />
+                    ))}
+
+                    {/* TODO: Delete these, but for testing purposes, leave them in */}
+                    {selectedProducts.map((product, key) => (
+                        <ProductCard key={key} product={product} />
+                    ))}
+                    {selectedProducts.map((product, key) => (
+                        <ProductCard key={key} product={product} />
+                    ))}
+                </div>
             </div>
             <Footer />
         </div>

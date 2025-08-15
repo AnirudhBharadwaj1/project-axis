@@ -3,10 +3,7 @@ import "../styles/LandingPage.css";
 import Navbar from "../components/Navbar";
 import KitSlides from "../components/KitSlides";
 import BestSelling from "../components/BestSelling";
-import WhiteButton from "../components/WhiteButton";
 import Footer from "../components/Footer";
-
-import gladius from "../assets/temp/gladius.jpeg";
 
 function LandingPage() {
     const [products, setProducts] = useState([]);

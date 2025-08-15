@@ -1,0 +1,63 @@
+.product-page-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 0rem;
+}
+
+.product-videos {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.product-video {
+    width: 20rem;
+    height: 20rem;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-header {
+    font-family: "Montserrat", serif;
+    font-size: 3rem;
+    font-weight: 600;
+    color: white;
+}
+
+.product-price {
+    font-family: "Agdasima", serif;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.product-page-button {
+    background: white;
+    color: black;
+    font-family: "Agdasima", serif;
+    font-size: 1.5rem;
+    padding: 1rem;
+    cursor: pointer;
+    border: none;
+    width: 20rem;
+    align-self: center;
+}
+
+.product-page-button:hover {
+    background: black;
+    color: white;
+}
+
+.product-includes-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-includes-item {
+    color: rgb(128, 128, 128);
+    font-family: "Agdasima", serif;
+}

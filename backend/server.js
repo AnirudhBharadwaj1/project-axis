@@ -35,7 +35,7 @@ app.get("/getProducts", async (req, res) => {
         name: product.name,
         desc: product.description,
         background: product.background,
-        includes: product.includes,
+        includes: product.includes.split(","),
         time: product.time,
         tags: product.tags.split(" "),
         numSold: product.num_sold,
@@ -47,8 +47,6 @@ app.get("/getProducts", async (req, res) => {
 // Gets a product given the product id
 app.get("/getProductById", async (req, res) => {
     const { productId } = req.query;
-
-    console.log("DEBUG:", productId);
 
     const { data, error } = await supabase
         .from("products")
@@ -68,7 +66,7 @@ app.get("/getProductById", async (req, res) => {
         name: data.name,
         desc: data.description,
         background: data.background,
-        includes: data.includes,
+        includes: data.includes.split(","),
         time: data.time,
         tags: data.tags.split(" "),
         numSold: data.num_sold,
