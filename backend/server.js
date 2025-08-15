@@ -44,6 +44,39 @@ app.get("/getProducts", async (req, res) => {
     res.json(products);
 });
 
+// Gets a product given the product id
+app.get("/getProductById", async (req, res) => {
+    const { productId } = req.query;
+
+    console.log("DEBUG:", productId);
+
+    const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("id", productId)
+        .single();
+
+    if (error) {
+        console.error("Error retreiving product:", error);
+        return res.status(500).json({ error: error.message });
+    }
+
+    // TODO: RETRIEVE MEDIA AS WELL AND SEND IT BACK
+
+    const product = {
+        id: data.id,
+        name: data.name,
+        desc: data.description,
+        background: data.background,
+        includes: data.includes,
+        time: data.time,
+        tags: data.tags.split(" "),
+        numSold: data.num_sold,
+    };
+
+    res.json(product);
+});
+
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });

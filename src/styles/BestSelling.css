@@ -24,6 +24,7 @@
     border-radius: 1rem;
     padding: 1rem;
     text-decoration: none;
+    border: 3px solid transparent;
 }
 
 /* Floating animation */
@@ -42,7 +43,6 @@
 /* Magnetic hover */
 .best-selling-product.hovered {
     transform: perspective(600px) rotateX(8deg) rotateY(-8deg) scale(1.05);
-    border: 3px solid transparent;
     border-radius: 1rem;
     background: linear-gradient(#1f1f1f, #1f1f1f) padding-box,
         /* inner background */ var(--glow) border-box; /* gradient border */
