@@ -7,6 +7,7 @@ function ProductCard({ product }) {
         <a
             href={`/product/` + product.id}
             className="product-card fade-product-in"
+            style={{ "--glow": product.background }}
         >
             <img
                 // src={product.image}      // TODO: Change it back to this

@@ -4,18 +4,24 @@
     text-decoration: none;
     background: transparent;
     align-items: center;
+    border: 3px solid transparent;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
 }
 
 .product-card-image {
-    width: 20rem;
-    height: 20rem;
+    width: 15rem;
+    height: 15rem;
 }
 
 .product-card-name {
     color: white;
     font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    font-size: 1.5rem;
+    font-weight: 600;
+    font-size: 1.2rem;
 }
 
 .fade-product-in {

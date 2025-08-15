@@ -1,7 +1,7 @@
 --------------------- WEEK 1 ---------------------
 Objective: Finish general frontend
+- Make the product cards tilt to where the mouse is on landing page
 - Set up db for media
-- Finish footer
 - Consider un-freeing everything
 - Finish shop page
 - Finish product page

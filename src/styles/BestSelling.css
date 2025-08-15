@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
     animation: float 4s ease-in-out infinite;
     will-change: transform;
     border-radius: 1rem;
@@ -42,11 +42,13 @@
 
 /* Magnetic hover */
 .best-selling-product.hovered {
-    transform: perspective(600px) rotateX(8deg) rotateY(-8deg) scale(1.05);
+    /* transform: perspective(600px) rotateX(8deg) rotateY(-8deg) scale(1.05); */
+    transform: scale(1.05);
     border-radius: 1rem;
     background: linear-gradient(#1f1f1f, #1f1f1f) padding-box,
         /* inner background */ var(--glow) border-box; /* gradient border */
     background-clip: padding-box, border-box;
+    animation: none;
 }
 
 .best-selling-image {
@@ -59,5 +61,6 @@
     color: white;
     font-family: "Montserrat", serif;
     font-size: 1.5rem;
+    font-weight: 600;
     margin-top: 1rem;
 }
