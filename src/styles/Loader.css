@@ -1,0 +1,11 @@
+.axis-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1f1f1f;
+    height: 100vh;
+}
+
+.axis-line {
+    transition: all 0.5s ease-in-out;
+}

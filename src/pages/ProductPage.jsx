@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Loader from "../components/Loader";
 import "../styles/ProductPage.css";
 
 import gladius from "../assets/temp/gladius.jpeg";
@@ -9,10 +10,12 @@ import gladius from "../assets/temp/gladius.jpeg";
 function ProductPage() {
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     // Get the product based on the id
     useEffect(() => {
         const fetchProduct = async (productId) => {
+            setLoading(true);
             try {
                 const res = await fetch(
                     `http://localhost:5000/getProductById?productId=${productId}`
@@ -29,7 +32,10 @@ function ProductPage() {
         };
 
         fetchProduct(productId);
+        setLoading(false);
     }, []);
+
+    if (loading) return <Loader />;
 
     return (
         <div className="page scrollbar">

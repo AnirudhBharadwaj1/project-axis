@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Filter from "../components/Filter";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
+import Loader from "../components/Loader";
 import "../styles/ShopPage.css";
 
 function ShopPage() {
@@ -13,10 +14,13 @@ function ShopPage() {
     );
     const [products, setProducts] = useState([]);
     const [selectedProducts, setSelectedProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     // Get the products from the database
     useEffect(() => {
         const fetchProducts = async () => {
+            setLoading(true);
+
             try {
                 const res = await fetch("http://localhost:5000/getProducts");
 
@@ -36,6 +40,7 @@ function ShopPage() {
         };
 
         fetchProducts();
+        setLoading(false);
     }, []);
 
     // Update filters
@@ -55,6 +60,8 @@ function ShopPage() {
             );
         }
     }, [products, selectedFilters]);
+
+    if (loading) return <Loader />;
 
     return (
         <div className="page scrollbar">

@@ -4,13 +4,17 @@ import Navbar from "../components/Navbar";
 import KitSlides from "../components/KitSlides";
 import BestSelling from "../components/BestSelling";
 import Footer from "../components/Footer";
+import Loader from "../components/Loader";
 
 function LandingPage() {
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     // Get the products from the database
     useEffect(() => {
         const fetchProducts = async () => {
+            setLoading(true);
+
             try {
                 const res = await fetch("http://localhost:5000/getProducts");
 
@@ -30,7 +34,10 @@ function LandingPage() {
         };
 
         fetchProducts();
+        setLoading(false);
     }, []);
+
+    if (loading) return <Loader />;
 
     return (
         <div className="page scrollbar">
