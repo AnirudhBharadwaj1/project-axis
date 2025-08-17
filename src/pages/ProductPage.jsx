@@ -50,7 +50,7 @@ function ProductPage() {
                     </div>
                     <div className="product-details">
                         <h3 className="product-header">{product.name}</h3>
-                        <h5 className="product-price">{product.price}</h5>
+                        <h3 className="product-price">${product.price}.00</h3>
                         <button className="product-page-button">
                             Add to Cart
                         </button>

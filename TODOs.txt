@@ -1,8 +1,10 @@
 --------------------- WEEK 1 ---------------------
 Objective: Finish general frontend
 - Set up db for media
-- Consider un-freeing everything
 - Finish shop page
+    - Fix icons for each product card
+    - Make product modal
+    - Make the cart using local storage
 - Finish product page
 - Make loading animation
 - Fix YouTube link for footer

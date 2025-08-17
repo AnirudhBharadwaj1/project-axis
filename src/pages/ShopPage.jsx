@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Filter from "../components/Filter";
 import ProductCard from "../components/ProductCard";
+import ProductModal from "../components/ProductModal";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import "../styles/ShopPage.css";

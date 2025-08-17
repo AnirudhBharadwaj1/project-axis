@@ -95,6 +95,7 @@ app.get("/getProductById", async (req, res) => {
         time: data.time,
         tags: data.tags.split(" "),
         numSold: data.num_sold,
+        price: data.price,
     };
 
     res.json(product);
