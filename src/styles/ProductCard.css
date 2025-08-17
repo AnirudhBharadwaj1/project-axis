@@ -5,11 +5,41 @@
     background: transparent;
     align-items: center;
     border: 3px solid transparent;
-    transition: transform 0.3s ease;
+    padding: 0.5rem;
 }
 
 .product-card:hover {
-    transform: scale(1.05);
+    background: linear-gradient(#1f1f1f, #1f1f1f) padding-box,
+        /* inner background */ var(--glow) border-box; /* gradient border */
+    background-clip: padding-box, border-box;
+    border-radius: 8px;
+    transform: translateY(-2px);
+}
+
+.product-card-icons {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 100;
+}
+
+.product-card:hover .product-card-icons {
+    opacity: 1;
+}
+
+.product-icon {
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.product-icon:hover {
+    transform: scale(1.2);
+    color: var(--glow, #fff);
 }
 
 .product-card-image {
@@ -17,11 +47,22 @@
     height: 15rem;
 }
 
+.product-card-text-div {
+    width: 100%;
+    background: #101010;
+    padding: 0.5rem 0;
+    text-align: center;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
 .product-card-name {
     color: white;
     font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-    font-size: 1.2rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0;
+    margin: 0.25rem;
 }
 
 .fade-product-in {

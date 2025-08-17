@@ -39,6 +39,31 @@ app.get("/getProducts", async (req, res) => {
         time: product.time,
         tags: product.tags.split(" "),
         numSold: product.num_sold,
+        price: product.price,
+    }));
+
+    res.json(products);
+});
+
+// Get the products from the free_kits table
+app.get("/getFreeProducts", async (req, res) => {
+    const { data, error } = await supabase.from("free_kits").select("*");
+
+    if (error) {
+        console.error("Error retrieving free products list:", error);
+        return res.status(500).json({ error: error.message });
+    }
+
+    // TODO: RETRIEVE MEDIA AS WELL AND STORE IN PRODUCTS
+
+    const products = data.map((product) => ({
+        id: product.id,
+        name: product.name,
+        desc: product.description,
+        includes: product.includes.split(","),
+        time: product.time,
+        tags: product.tags.split(" "),
+        numSold: product.num_sold,
     }));
 
     res.json(products);
