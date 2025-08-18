@@ -82,6 +82,7 @@
     gap: 1rem;
     margin-top: auto;
     padding-top: 2rem;
+    align-items: center;
 }
 
 .product-modal-button {
@@ -94,7 +95,6 @@
     width: 13rem;
     border-radius: 4px;
     cursor: pointer;
-    align-self: center;
 
     /* TODO: Apply box shadow */
     transition: transform 0.3s ease;

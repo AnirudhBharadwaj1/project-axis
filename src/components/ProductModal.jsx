@@ -6,8 +6,7 @@ import "../styles/ProductModal.css";
 import chroma from "../assets/temp/chroma.jpeg";
 
 function ProductModal({ product, setModalProduct }) {
-    const { addToCart, removeFromCart } = useContext(CartContext);
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const { cart, addToCart, removeFromCart } = useContext(CartContext);
 
     const handleBackgroundClick = (e) => {
         if (e.target.classList.contains("product-modal-backdrop")) {
@@ -56,14 +55,14 @@ function ProductModal({ product, setModalProduct }) {
                                             ? "Remove from Cart"
                                             : "Add to Cart"}
                                     </button>
-                                    <button className="product-modal-button">
-                                        <a
-                                            href={`product/` + product.id}
-                                            className="product-modal-link"
-                                        >
+                                    <a
+                                        href={`/product/` + product.id}
+                                        className="product-modal-link"
+                                    >
+                                        <button className="product-modal-button">
                                             View Product Details
-                                        </a>
-                                    </button>
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

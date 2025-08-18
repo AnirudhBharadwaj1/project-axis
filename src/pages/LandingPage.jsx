@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import "../styles/LandingPage.css";
+import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 import KitSlides from "../components/KitSlides";
 import BestSelling from "../components/BestSelling";
 import Footer from "../components/Footer";
-import Loader from "../components/Loader";
 
 function LandingPage() {
     const [products, setProducts] = useState([]);

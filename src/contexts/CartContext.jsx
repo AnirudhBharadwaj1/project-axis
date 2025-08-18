@@ -24,8 +24,10 @@ export function CartProvider({ children }) {
             return [...prev, item];
         });
     };
+
     const removeFromCart = (id) =>
-        setCart((prev) => prev.filter((i) => i.id !== id));
+        setCart((prev) => prev.filter((i) => i !== id));
+
     const clearCart = () => setCart([]);
 
     return (

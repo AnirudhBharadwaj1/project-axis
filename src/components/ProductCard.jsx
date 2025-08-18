@@ -9,8 +9,7 @@ import gladius from "../assets/temp/gladius.jpeg";
 // import chroma from "../assets/temp/chroma.jpeg";
 
 function ProductCard({ product, setModalProduct }) {
-    const { addToCart, removeFromCart } = useContext(CartContext);
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const { cart, addToCart, removeFromCart } = useContext(CartContext);
 
     return (
         <div
@@ -51,7 +50,6 @@ function ProductCard({ product, setModalProduct }) {
                     alt="Product image"
                     className="product-card-image"
                 />
-                {/* <h3 className="product-card-name">{product.name.toUpperCase()}</h3> */}
                 <div className="product-card-text-div">
                     <h3 className="product-card-name">{product.name}</h3>
                     {product.price && (
