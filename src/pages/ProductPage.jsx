@@ -51,6 +51,7 @@ function ProductPage() {
                     <div className="product-details">
                         <h3 className="product-header">{product.name}</h3>
                         <h3 className="product-price">${product.price}.00</h3>
+                        <p className="product-desc">{product.desc}</p>
                         <button className="product-page-button">
                             Add to Cart
                         </button>

@@ -95,8 +95,6 @@
     width: 13rem;
     border-radius: 4px;
     cursor: pointer;
-
-    /* TODO: Apply box shadow */
     transition: transform 0.3s ease;
 }
 
