@@ -6,6 +6,8 @@
     align-items: center;
     border: 3px solid transparent;
     padding: 0.5rem;
+
+    position: relative;
 }
 
 .product-card:hover {
@@ -18,33 +20,48 @@
 
 .product-card-icons {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: 0.6rem;
+    right: 0.6rem;
     display: flex;
     gap: 0.5rem;
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: 100;
+    z-index: 20;
+    background: #1f1f1fc1;
+    padding: 0.8rem;
+    border-radius: 8px;
 }
 
 .product-card:hover .product-card-icons {
     opacity: 1;
 }
 
-.product-icon {
+.product-card-icon {
     color: white;
     cursor: pointer;
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.product-icon:hover {
+.product-card-icon:hover {
     transform: scale(1.2);
-    color: var(--glow, #fff);
+}
+
+.product-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+}
+
+.product-card:hover .product-card-content {
+    filter: brightness(0.8);
 }
 
 .product-card-image {
     width: 15rem;
     height: 15rem;
+    cursor: pointer;
 }
 
 .product-card-text-div {
@@ -54,6 +71,7 @@
     text-align: center;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    cursor: pointer;
 }
 
 .product-card-name {

@@ -15,6 +15,8 @@ function ShopPage() {
     );
     const [products, setProducts] = useState([]);
     const [selectedProducts, setSelectedProducts] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [modalProduct, setModalProduct] = useState(null);
     const [loading, setLoading] = useState(true);
 
     // Get the products from the database
@@ -62,30 +64,86 @@ function ShopPage() {
         }
     }, [products, selectedFilters]);
 
+    // Show the modal if "View More" was clicked on a product
+    useEffect(() => {
+        if (modalProduct) {
+            setShowModal(true);
+        } else {
+            setShowModal(false);
+        }
+    }, [modalProduct]);
+
+    // Stuff to do if modal is open
+    useEffect(() => {
+        if (showModal) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+
+        document.body.style.overflow = showModal ? "hidden" : "auto";
+
+        const handleEscape = (e) => {
+            if (e.key === "Escape" && showModal) {
+                setModalProduct(null);
+            }
+        };
+
+        document.addEventListener("keydown", handleEscape);
+
+        return () => {
+            document.body.style.overflow = "auto";
+            document.removeEventListener("keydown", handleEscape);
+        };
+    }, [showModal]);
+
     if (loading) return <Loader />;
 
     return (
         <div className="page scrollbar">
             <Navbar />
-            <div className="shop-page-content">
+            <div
+                className="shop-page-content"
+                style={{ filter: showModal ? "blur(7px)" : "none" }}
+            >
                 <Filter
                     selectedFilters={selectedFilters}
                     setSelectedFilters={setSelectedFilters}
                 />
                 <div className="shop-page-products">
                     {selectedProducts.map((product, key) => (
-                        <ProductCard key={key} product={product} />
+                        <ProductCard
+                            key={key}
+                            product={product}
+                            setModalProduct={setModalProduct}
+                        />
                     ))}
 
                     {/* TODO: Delete these, but for testing purposes, leave them in */}
                     {selectedProducts.map((product, key) => (
-                        <ProductCard key={key} product={product} />
+                        <ProductCard
+                            key={key}
+                            product={product}
+                            setModalProduct={setModalProduct}
+                        />
                     ))}
                     {selectedProducts.map((product, key) => (
-                        <ProductCard key={key} product={product} />
+                        <ProductCard
+                            key={key}
+                            product={product}
+                            setModalProduct={setModalProduct}
+                        />
                     ))}
                 </div>
             </div>
+
+            {/* PRODUCT MODAL */}
+            {showModal && (
+                <ProductModal
+                    product={modalProduct}
+                    setModalProduct={setModalProduct}
+                />
+            )}
             <Footer />
         </div>
     );

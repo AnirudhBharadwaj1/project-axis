@@ -7,17 +7,23 @@ import ShopPage from "./pages/ShopPage";
 import FreePage from "./pages/FreePage";
 import LoginPage from "./pages/LoginPage";
 import ProductPage from "./pages/ProductPage";
+import { CartProvider } from "./contexts/CartContext";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
-        <Router>
-            <Routes>
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/shop/:filter?" element={<ShopPage />} />
-                <Route path="/free-kits" element={<FreePage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/product/:productId" element={<ProductPage />} />
-            </Routes>
-        </Router>
+        <CartProvider>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<LandingPage />} />
+                    <Route path="/shop/:filter?" element={<ShopPage />} />
+                    <Route path="/free-kits" element={<FreePage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route
+                        path="/product/:productId"
+                        element={<ProductPage />}
+                    />
+                </Routes>
+            </Router>
+        </CartProvider>
     </StrictMode>
 );
