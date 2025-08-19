@@ -3,8 +3,7 @@
     flex-direction: row;
     justify-content: center;
     gap: 8rem;
-    padding: 6rem 0rem;
-    /* width: 50rem; */
+    padding: 4rem 0rem;
 }
 
 .product-videos {
@@ -14,15 +13,16 @@
 }
 
 .product-video {
-    width: 20rem;
-    height: 20rem;
+    width: 30rem;
+    height: 30rem;
 }
 
 .product-details {
     display: flex;
     flex-direction: column;
-    /* position: sticky; */
-    /* top: 6rem; */
+    position: sticky;
+    top: 10rem;
+    height: fit-content;
 }
 
 .product-header {
@@ -43,12 +43,40 @@
 
 .product-desc {
     font-family: "Agdasima", serif;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 500;
     font-weight: 500;
     color: white;
     margin: 2rem 0 0 0;
-    width: 30rem;
+    max-width: 35rem;
+}
+
+.product-includes-section {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0 0 0;
+}
+
+.product-includes-header {
+    color: white;
+    font-family: "Agdasima", serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin: 1rem 0 0 0;
+}
+
+.product-includes-item {
+    color: white;
+    font-family: "Agdasima", serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.product-page-button-div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 2rem 0 0 0;
 }
 
 .product-page-button {
@@ -59,24 +87,14 @@
     padding: 1rem;
     cursor: pointer;
     border: none;
-    width: 10rem;
+    width: 15rem;
     align-self: center;
     border-radius: 4px;
     transition: transform 0.3s ease;
-    margin: 1rem 0 0 0;
+    text-align: center;
 }
 
 .product-page-button:hover {
     background: linear-gradient(90deg, #bcbcbc, #eeeeee);
     transform: translateY(-2px);
-}
-
-.product-includes-section {
-    display: flex;
-    flex-direction: column;
-}
-
-.product-includes-item {
-    color: rgb(128, 128, 128);
-    font-family: "Agdasima", serif;
 }

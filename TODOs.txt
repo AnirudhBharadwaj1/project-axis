@@ -1,9 +1,8 @@
 --------------------- WEEK 1 ---------------------
 Objective: Finish general frontend
 - Set up db for media
-- Finish shop page
-    - Use the account for cart if user is signed in
-- Finish product page
+- Make checkout page
+- Make free kits page
 - Make loading animation
 - Fix YouTube link for footer
 
@@ -13,6 +12,7 @@ Objective: Finish login related functionality
 - Make login page
 - Make signup page
 - Make account details page (includes downloaded products)
+- Merge local storage cart with user's cart if signed in
 
 --------------------- WEEK 3 ---------------------
 Objective: Finish admin side

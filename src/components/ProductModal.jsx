@@ -30,7 +30,6 @@ function ProductModal({ product, setModalProduct }) {
         }
     };
 
-    // TODO: ADD A WAY TO CLOSE THIS MODAL, AND ADD THE ONCLICKS
     return (
         <>
             {product && (

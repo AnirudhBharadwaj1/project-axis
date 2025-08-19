@@ -19,7 +19,7 @@ function Footer() {
                     <FaInstagram size={28} />
                 </a>
                 <a
-                    href="https://youtube.com/prod.byaxis"
+                    href="https://www.youtube.com/@prod.byaxis"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="footer-socials"
