@@ -2,7 +2,8 @@
 Objective: Finish general frontend
 - Set up db for media
 - Make checkout page
-- Make free kits page
+- Shop Page:
+    - Fix for free products
 - Make loading animation
 - Fix YouTube link for footer
 

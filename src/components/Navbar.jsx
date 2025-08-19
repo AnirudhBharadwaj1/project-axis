@@ -22,7 +22,7 @@ function Navbar() {
                 <Link to="/shop/loop-kits" className="navbar-link">
                     Loop Kits
                 </Link>
-                <Link to="/free-kits" className="navbar-link">
+                <Link to="/shop/free-kits" className="navbar-link">
                     Free Kits
                 </Link>
             </div>
