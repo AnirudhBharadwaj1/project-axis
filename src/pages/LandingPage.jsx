@@ -16,7 +16,9 @@ function LandingPage() {
             setLoading(true);
 
             try {
-                const res = await fetch("http://localhost:5000/getProducts");
+                const res = await fetch(
+                    "http://localhost:5000/getProducts?type=paid"
+                );
 
                 const data = await res.json();
 

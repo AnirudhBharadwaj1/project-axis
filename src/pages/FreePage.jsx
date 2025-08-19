@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
+import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
 import "../styles/FreePage.css";
 
@@ -17,7 +18,7 @@ function FreePage() {
 
             try {
                 const res = await fetch(
-                    "http://localhost:5000/getFreeProducts"
+                    "http://localhost:5000/getProducts?type=free"
                 );
 
                 const data = await res.json();
@@ -77,13 +78,15 @@ function FreePage() {
     return (
         <div className="page">
             <Navbar />
-            {products.map((product, key) => (
-                <ProductCard
-                    key={key}
-                    product={product}
-                    setModalProduct={setModalProduct}
-                />
-            ))}
+            <div className="shop-page-products">
+                {products.map((product, key) => (
+                    <ProductCard
+                        key={key}
+                        product={product}
+                        setModalProduct={setModalProduct}
+                    />
+                ))}
+            </div>
             <Footer />
         </div>
     );

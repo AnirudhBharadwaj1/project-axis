@@ -15,9 +15,7 @@ function ProductCard({ product, setModalProduct }) {
         <div
             className="product-card fade-product-in"
             style={{
-                "--glow":
-                    product.background ||
-                    "linear-gradient(to right, #ececec 0%, #2e2e2e 50%, #ececec 100%",
+                "--glow": product.background,
             }}
         >
             <div className="product-card-icons">
@@ -52,7 +50,7 @@ function ProductCard({ product, setModalProduct }) {
                 />
                 <div className="product-card-text-div">
                     <h3 className="product-card-name">{product.name}</h3>
-                    {product.price && (
+                    {product.price !== 0 && (
                         <h3 className="product-card-name">
                             ${product.price}.00
                         </h3>

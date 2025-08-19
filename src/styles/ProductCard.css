@@ -6,8 +6,8 @@
     align-items: center;
     border: 3px solid transparent;
     padding: 0.5rem;
-
     position: relative;
+    width: 15rem;
 }
 
 .product-card:hover {
@@ -78,7 +78,7 @@
     color: white;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 0;
     margin: 0.25rem;
 }

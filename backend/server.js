@@ -21,7 +21,10 @@ const supabase = createClient(
 
 ////////////////////////////////////////////// PRODUCTS SECTION
 // Gets the list of products
+// Expected req: "free", "paid", or "all"
 app.get("/getProducts", async (req, res) => {
+    const { type } = req.query;
+
     const { data, error } = await supabase.from("products").select("*");
 
     if (error) {
@@ -31,17 +34,26 @@ app.get("/getProducts", async (req, res) => {
 
     // TODO: RETRIEVE MEDIA AS WELL AND STORE IN PRODUCTS
 
-    const products = data.map((product) => ({
+    let products = data.map((product) => ({
         id: product.id,
         name: product.name,
         desc: product.description,
         background: product.background,
         includes: product.includes.split(","),
         time: product.time,
-        tags: product.tags.split(" "),
+        tags: product.tags.split(","),
         numSold: product.num_sold,
         price: product.price,
     }));
+
+    // If paid products should be returned
+    if (type === "paid") {
+        products = products.filter((product) => product.price > 0);
+
+        // If free products should be returned
+    } else if (type === "free") {
+        products = products.filter((product) => product.price === 0);
+    }
 
     res.json(products);
 });
@@ -70,64 +82,9 @@ app.get("/getProductById", async (req, res) => {
         background: data.background,
         includes: data.includes.split(","),
         time: data.time,
-        tags: data.tags.split(" "),
+        tags: data.tags.split(","),
         numSold: data.num_sold,
         price: data.price,
-    };
-
-    res.json(product);
-});
-
-// Get the products from the free_kits table
-app.get("/getFreeProducts", async (req, res) => {
-    const { data, error } = await supabase.from("free_kits").select("*");
-
-    if (error) {
-        console.error("Error retrieving free products list:", error);
-        return res.status(500).json({ error: error.message });
-    }
-
-    // TODO: RETRIEVE MEDIA AS WELL AND STORE IN PRODUCTS
-
-    const products = data.map((product) => ({
-        id: product.id,
-        name: product.name,
-        desc: product.description,
-        includes: product.includes.split(","),
-        time: product.time,
-        tags: product.tags.split(" "),
-        numSold: product.num_sold,
-        paidProductId: product.paid_product_id,
-    }));
-
-    res.json(products);
-});
-
-// Gets a free product given the product id
-app.get("/getFreeProductById", async (req, res) => {
-    const { productId } = req.query;
-
-    const { data, error } = await supabase
-        .from("free_kits")
-        .select("*")
-        .eq("id", productId)
-        .single();
-
-    if (error) {
-        console.error("Error retreiving product:", error);
-        return res.status(500).json({ error: error.message });
-    }
-
-    // TODO: RETRIEVE MEDIA AS WELL AND SEND IT BACK
-
-    const product = {
-        id: data.id,
-        name: data.name,
-        desc: data.description,
-        includes: data.includes.split(","),
-        time: data.time,
-        tags: data.tags.split(" "),
-        numSold: data.num_sold,
         paidProductId: data.paid_product_id,
     };
 
