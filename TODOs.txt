@@ -2,8 +2,6 @@
 Objective: Finish general frontend
 - Set up db for media
 - Finish shop page
-    - Add a smooth mount and unmount transition for modals
-    - Fix a width for the product cards (so long names wrap down)
     - Use the account for cart if user is signed in
 - Finish product page
 - Make loading animation

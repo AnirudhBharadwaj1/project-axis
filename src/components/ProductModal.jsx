@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FaTimes } from "react-icons/fa";
 import { CartContext } from "../contexts/CartContext";
 import "../styles/ProductModal.css";
@@ -7,10 +7,26 @@ import chroma from "../assets/temp/chroma.jpeg";
 
 function ProductModal({ product, setModalProduct }) {
     const { cart, addToCart, removeFromCart } = useContext(CartContext);
+    const [visible, setVisible] = useState(false);
 
+    // Update state
+    useEffect(() => {
+        if (product) {
+            setVisible(true);
+        }
+    }, [product]);
+
+    // Smoothly close the modal
+    const handleClose = () => {
+        setVisible(false);
+        setTimeout(() => setModalProduct(null), 500);
+    };
+
+    // Close the modal if the background is clicked
     const handleBackgroundClick = (e) => {
         if (e.target.classList.contains("product-modal-backdrop")) {
-            setModalProduct(null);
+            // setModalProduct(null);
+            handleClose();
         }
     };
 
@@ -19,13 +35,20 @@ function ProductModal({ product, setModalProduct }) {
         <>
             {product && (
                 <div
-                    className="product-modal-backdrop"
+                    className={`product-modal-backdrop ${
+                        visible ? "show" : ""
+                    }`}
                     onClick={handleBackgroundClick}
                 >
-                    <div className="product-modal scrollbar">
+                    <div
+                        className={`product-modal scrollbar ${
+                            visible ? "slide-up" : "slide-down"
+                        }`}
+                    >
                         <FaTimes
                             className="product-modal-close"
-                            onClick={() => setModalProduct(null)}
+                            // onClick={() => setModalProduct(null)}
+                            onClick={handleClose}
                         />
 
                         <h3 className="product-modal-header">{product.name}</h3>
