@@ -84,6 +84,7 @@
     opacity: 0;
     transform: translateY(-6px);
     animation: dropdownIn 120ms ease-out forwards;
+    width: 9rem;
 }
 
 @keyframes dropdownIn {
@@ -105,6 +106,7 @@
     text-align: left;
     background: transparent;
     cursor: pointer;
+    text-align: center;
 }
 
 .navbar-account-link:hover {

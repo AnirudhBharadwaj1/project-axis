@@ -10,7 +10,6 @@ Objective: Finish general frontend
 
 --------------------- WEEK 2 ---------------------
 Objective: Finish login related functionality
-- Make account dropdown
 - Make login page
 - Make signup page
 - Make account page

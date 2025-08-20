@@ -111,6 +111,16 @@ function ShopPage() {
         };
     }, [showModal]);
 
+    // TODO: Delete this one
+    useEffect(() => {
+        console.log(
+            "Filters:",
+            selectedFilters,
+            "\nProducts:",
+            selectedProducts
+        );
+    }, [selectedFilters]);
+
     if (loading) return <Loader />;
 
     return (
