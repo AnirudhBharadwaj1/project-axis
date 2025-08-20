@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiUser } from "react-icons/fi";
 import "../styles/Navbar.css";
 
 function Navbar() {
+    // TODO: Replace this with actual auth
+    const [loggedIn, setLoggedIn] = useState(false);
+
     return (
         <div className="navbar-div">
             <h3 className="navbar-title">PROD.BYAXIS</h3>
@@ -28,6 +32,26 @@ function Navbar() {
             </div>
             <div className="navbar-account-div">
                 <FiUser size={30} />
+
+                <div className="navbar-account-dropdown">
+                    {loggedIn ? (
+                        <>
+                            <a
+                                href="/manage-account"
+                                className="navbar-account-link"
+                            >
+                                Manage Account
+                            </a>
+                            <button className="navbar-account-link">
+                                Log Out
+                            </button>
+                        </>
+                    ) : (
+                        <a href="/login" className="navbar-account-link">
+                            Log In
+                        </a>
+                    )}
+                </div>
             </div>
         </div>
     );

@@ -1,18 +1,23 @@
 --------------------- WEEK 1 ---------------------
 Objective: Finish general frontend
 - Set up db for media
-- Make checkout page
 - Shop Page:
     - Fix for free products
+        - Currently, selecting filters through navbar and filter is kind of
+        not working because of the way you bypassed filter for free-kits
+- Make checkout page
 - Make loading animation
-- Fix YouTube link for footer
 
 --------------------- WEEK 2 ---------------------
 Objective: Finish login related functionality
 - Make account dropdown
 - Make login page
 - Make signup page
-- Make account details page (includes downloaded products)
+- Make account page
+    - Has the following:
+        - Account details (email and password)
+        - Cart
+        - Purchase history
 - Merge local storage cart with user's cart if signed in
 
 --------------------- WEEK 3 ---------------------

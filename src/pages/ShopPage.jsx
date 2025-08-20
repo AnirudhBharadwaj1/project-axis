@@ -40,13 +40,10 @@ function ShopPage() {
                 }
 
                 const data = await res.json();
-                // console.log(data);
 
                 const sorted = data.sort(
                     (a, b) => new Date(b.time) - new Date(a.time)
                 );
-
-                console.log(sorted);
 
                 setProducts(sorted);
             } catch (error) {
