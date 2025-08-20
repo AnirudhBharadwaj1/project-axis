@@ -56,9 +56,8 @@
     align-items: center;
     color: white;
     transition: ease-in-out 0.2s;
-    cursor: pointer;
-
     position: relative;
+    cursor: pointer;
 }
 
 .navbar-account-div:hover {
@@ -67,34 +66,48 @@
     color: #1f1f1f;
 }
 
+.navbar-account-icon {
+    display: block;
+}
+
 .navbar-account-dropdown {
-    display: none;
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    top: 40px; /* below icon */
-    right: 0;
-    background: white;
+    top: 100%;
+    background: rgb(21, 21, 21);
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     padding: 0.5rem;
     z-index: 100;
+    opacity: 0;
+    transform: translateY(-6px);
+    animation: dropdownIn 120ms ease-out forwards;
 }
 
-.navbar-account-div:hover .account-dropdown {
-    display: flex;
-    flex-direction: column;
+@keyframes dropdownIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .navbar-account-link {
     padding: 0.5rem 1rem;
     text-decoration: none;
-    color: black;
+    color: white;
+    font-family: "Agdasima", serif;
+    font-size: 1.3rem;
     border-radius: 6px;
     background: none;
     border: none;
     text-align: left;
+    background: transparent;
+    cursor: pointer;
 }
 
 .navbar-account-link:hover {
-    background: #f2f2f2;
+    background: rgba(255, 255, 255, 0.89);
+    color: black;
 }

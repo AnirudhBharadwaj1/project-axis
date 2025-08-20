@@ -4,12 +4,15 @@ import { FiUser } from "react-icons/fi";
 import "../styles/Navbar.css";
 
 function Navbar() {
-    // TODO: Replace this with actual auth
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [open, setOpen] = useState(false);
+
+    // TODO: replace with real auth state
+    const loggedIn = true;
 
     return (
         <div className="navbar-div">
             <h3 className="navbar-title">PROD.BYAXIS</h3>
+
             <div className="navbar-routes">
                 <Link to="/" className="navbar-link">
                     Home
@@ -30,28 +33,48 @@ function Navbar() {
                     Free Kits
                 </Link>
             </div>
-            <div className="navbar-account-div">
-                <FiUser size={30} />
 
-                <div className="navbar-account-dropdown">
-                    {loggedIn ? (
-                        <>
-                            <a
-                                href="/manage-account"
+            {/* Wrapper contains icon + dropdown */}
+            <div
+                className="navbar-account-div"
+                onMouseEnter={() => setOpen(true)}
+                onMouseLeave={() => setOpen(false)}
+            >
+                <FiUser size={30} className="navbar-account-icon" />
+
+                {open && (
+                    <div className="navbar-account-dropdown" role="menu">
+                        {loggedIn ? (
+                            <>
+                                <Link
+                                    to="/account"
+                                    className="navbar-account-link"
+                                    role="menuitem"
+                                >
+                                    Manage Account
+                                </Link>
+                                <button
+                                    type="button"
+                                    className="navbar-account-link"
+                                    onClick={() => {
+                                        /* your logout logic */
+                                    }}
+                                    role="menuitem"
+                                >
+                                    Log Out
+                                </button>
+                            </>
+                        ) : (
+                            <Link
+                                to="/login"
                                 className="navbar-account-link"
+                                role="menuitem"
                             >
-                                Manage Account
-                            </a>
-                            <button className="navbar-account-link">
-                                Log Out
-                            </button>
-                        </>
-                    ) : (
-                        <a href="/login" className="navbar-account-link">
-                            Log In
-                        </a>
-                    )}
-                </div>
+                                Log In
+                            </Link>
+                        )}
+                    </div>
+                )}
             </div>
         </div>
     );
