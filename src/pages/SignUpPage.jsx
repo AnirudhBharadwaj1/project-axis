@@ -22,14 +22,12 @@ function SignUpPage() {
             return;
         }
 
-        const response = await fetch("/api/signup", {
+        const response = await fetch("/api/createUser", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 email,
                 password,
-                cart: [],
-                purchasedProducts: [],
             }),
         });
 
@@ -37,7 +35,6 @@ function SignUpPage() {
         if (data.error) {
             setError(data.error);
         } else {
-            console.log("User signed up:", data);
             navigate("/"); // redirect to homepage after signup
         }
     };

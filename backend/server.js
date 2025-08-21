@@ -93,10 +93,44 @@ app.get("/getProductById", async (req, res) => {
 
 ////////////////////////////////////////////// USER SECTION
 
+// Given email and password, this creates a user and stores it in the users table
+// Users Table Columns:
+// - id (use auth)
+// - purchased (init to "")
+// - cart (init to "")
+
+app.post("/createUser", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // create user with Supabase Auth
+        const { data, error } = await supabase.auth.admin.createUser({
+            email,
+            password,
+            email_confirm: true, // optional: auto-confirm so user doesn’t need to verify email
+        });
+
+        if (error) return res.status(400).json({ error: error.message });
+
+        // optional: insert into your own "users" table for extra fields
+        await supabase.from("users").insert([
+            {
+                id: data.user.id, // same id as auth user
+                cart: "",
+                purchased: "",
+            },
+        ]);
+
+        res.json({ message: "User created", user: data.user });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+// Given email and password, this verifies a user trying to log in
 app.post("/verifyUser", async (req, res) => {
     const { email, password } = req.body;
-
-    const { data, error } = await supabase.from("users").select("*").eq;
 });
 
 app.listen(port, () => {
