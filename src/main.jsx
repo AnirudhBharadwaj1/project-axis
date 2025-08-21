@@ -8,6 +8,7 @@ import FreePage from "./pages/FreePage";
 import ProductPage from "./pages/ProductPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
 import AccountPage from "./pages/AccountPage";
 import "./index.css";
 
@@ -25,6 +26,7 @@ createRoot(document.getElementById("root")).render(
                     />
                     <Route path="/checkout" element={<CheckoutPage />} />
                     <Route path="/login" element={<LoginPage />} />
+                    <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/account" element={<AccountPage />} />
                 </Routes>
             </Router>

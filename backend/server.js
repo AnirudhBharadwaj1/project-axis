@@ -91,6 +91,14 @@ app.get("/getProductById", async (req, res) => {
     res.json(product);
 });
 
+////////////////////////////////////////////// USER SECTION
+
+app.post("/verifyUser", async (req, res) => {
+    const { email, password } = req.body;
+
+    const { data, error } = await supabase.from("users").select("*").eq;
+});
+
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });

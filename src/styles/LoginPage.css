@@ -1,0 +1,108 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    margin: 2rem auto;
+    background: #151515;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
+    color: white;
+    font-family: "Montserrat", serif;
+}
+
+.form-group input {
+    /* font-family: "Montserrat", serif; */
+    font-family: "Agdasima", serif;
+    margin-top: 0.5rem;
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.3rem;
+    outline: none;
+}
+
+.password-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.password-wrapper input {
+    width: 100%;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 38%;
+    right: 10px;
+    cursor: pointer;
+    color: #aaa;
+    font-size: 1.2rem;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-bottom: 1rem;
+}
+
+.forgot-password a {
+    color: #4aa3ff;
+    font-family: "Montserrat", serif;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.login-btn {
+    background: white;
+    color: black;
+    font-family: "Agdasima", serif;
+    font-size: 1.4rem;
+    padding: 0.8rem;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    align-self: center;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.login-btn:hover {
+    background: linear-gradient(90deg, #bcbcbc, #eeeeee);
+    transform: translateY(-2px);
+}
+
+.signup-text {
+    margin-top: 1rem;
+    text-align: center;
+    color: white;
+    font-size: 0.8rem;
+    font-family: "Montserrat", serif;
+}
+
+.signup-text a {
+    color: #4aa3ff;
+    text-decoration: none;
+}
+
+.error-message {
+    color: #ff4a4a;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}

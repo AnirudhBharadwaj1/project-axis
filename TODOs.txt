@@ -1,10 +1,6 @@
 --------------------- WEEK 1 ---------------------
 Objective: Finish general frontend
 - Set up db for media
-- Shop Page:
-    - Fix for free products
-        - Currently, selecting filters through navbar and filter is kind of
-        not working because of the way you bypassed filter for free-kits
 - Make checkout page
 - Make loading animation
 

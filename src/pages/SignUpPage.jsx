@@ -5,36 +5,40 @@ import Footer from "../components/Footer";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import "../styles/LoginPage.css";
 
-function LoginPage() {
+function SignUpPage() {
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false); // new state
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault(); // prevent page refresh
-        setError("");
+    const handleSignup = async (e) => {
+        e.preventDefault();
 
-        try {
-            const response = await fetch("/verifyUser", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email, password }),
-            });
+        if (password !== confirmPassword) {
+            setError("Passwords do not match.");
+            return;
+        }
 
-            const data = await response.json();
+        const response = await fetch("/api/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                email,
+                password,
+                cart: [],
+                purchasedProducts: [],
+            }),
+        });
 
-            if (response.ok && data.success) {
-                navigate("/");
-            } else {
-                setError(data.message || "Invalid email or password.");
-            }
-        } catch (err) {
-            console.error(err);
-            setError("Something went wrong. Please try again.");
+        const data = await response.json();
+        if (data.error) {
+            setError(data.error);
+        } else {
+            console.log("User signed up:", data);
+            navigate("/"); // redirect to homepage after signup
         }
     };
 
@@ -42,7 +46,7 @@ function LoginPage() {
         <div className="page scrollbar">
             <Navbar />
             <div className="login-container">
-                <form className="login-form" onSubmit={handleSubmit}>
+                <form className="login-form" onSubmit={handleSignup}>
                     {/* Email */}
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
@@ -77,22 +81,44 @@ function LoginPage() {
                         </div>
                     </div>
 
-                    {/* Forgot password */}
-                    <div className="forgot-password">
-                        <a href="/forgot-password">Forgot Password?</a>
+                    {/* Confirm Password */}
+                    <div className="form-group">
+                        <label htmlFor="confirmPassword">
+                            Confirm Password
+                        </label>
+                        <div className="password-wrapper">
+                            <input
+                                type={showConfirmPassword ? "text" : "password"}
+                                id="confirmPassword"
+                                placeholder="Confirm your password"
+                                value={confirmPassword}
+                                onChange={(e) =>
+                                    setConfirmPassword(e.target.value)
+                                }
+                                required
+                            />
+                            <span
+                                className="password-toggle"
+                                onClick={() =>
+                                    setShowConfirmPassword(!showConfirmPassword)
+                                }
+                            >
+                                {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+                            </span>
+                        </div>
                     </div>
 
                     {/* Error message */}
                     {error && <p className="error-message">{error}</p>}
 
-                    {/* Login button */}
+                    {/* Sign up button */}
                     <button type="submit" className="login-btn">
-                        Log In
+                        Sign Up
                     </button>
 
-                    {/* Sign up link */}
+                    {/* Log in link */}
                     <p className="signup-text">
-                        Don’t have an account? <a href="/signup">Sign Up</a>
+                        Already have an account? <a href="/login">Log In</a>
                     </p>
                 </form>
             </div>
@@ -101,4 +127,4 @@ function LoginPage() {
     );
 }
 
-export default LoginPage;
+export default SignUpPage;

@@ -7,7 +7,7 @@ function Navbar() {
     const [open, setOpen] = useState(false);
 
     // TODO: replace with real auth state
-    const loggedIn = true;
+    const loggedIn = false;
 
     return (
         <div className="navbar-div">
