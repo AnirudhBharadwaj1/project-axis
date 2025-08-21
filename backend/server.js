@@ -133,6 +133,29 @@ app.post("/verifyUser", async (req, res) => {
     const { email, password } = req.body;
 });
 
+// Given the uid of a user, get their account details
+app.get("/getUser", async (req, res) => {
+    const { uid } = req.query;
+
+    const { data, error } = await supabase
+        .from("users")
+        .select("*")
+        .eq("id", uid)
+        .single();
+
+    if (error) {
+        console.error("Error retreiving user:", error);
+        return res.status(500).json({ error: error.message });
+    }
+
+    const user = {
+        purchased: data.purchased,
+        cart: data.cart,
+    };
+
+    res.json(user);
+});
+
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
