@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
+import Filter from "../components/Filter";
 import ProductCard from "../components/ProductCard";
+import ProductModal from "../components/ProductModal";
 import Footer from "../components/Footer";
-import "../styles/FreePage.css";
+import "../styles/ShopPage.css";
 
 function FreePage() {
+    const [selectedFilters, setSelectedFilters] = useState([]);
     const [products, setProducts] = useState([]);
+    const [selectedProducts, setSelectedProducts] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [modalProduct, setModalProduct] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -30,7 +35,7 @@ function FreePage() {
                 setProducts(sorted);
             } catch (error) {
                 console.error(
-                    "Error fetching products on frontend side:",
+                    "Error fetching free products on frontend side:",
                     error
                 );
             }
@@ -39,6 +44,19 @@ function FreePage() {
         fetchProducts();
         setLoading(false);
     }, []);
+
+    // Update products on display
+    useEffect(() => {
+        if (selectedFilters.length === 0) {
+            setSelectedProducts(products);
+        } else {
+            setSelectedProducts(
+                products.filter((product) =>
+                    product.tags.some((tag) => selectedFilters.includes(tag))
+                )
+            );
+        }
+    }, [products, selectedFilters]);
 
     // Show the modal if "View More" was clicked on a product
     useEffect(() => {
@@ -76,17 +94,50 @@ function FreePage() {
     if (loading) return <Loader />;
 
     return (
-        <div className="page">
+        <div className="page scrollbar">
             <Navbar />
-            <div className="shop-page-products">
-                {products.map((product, key) => (
-                    <ProductCard
-                        key={key}
-                        product={product}
-                        setModalProduct={setModalProduct}
-                    />
-                ))}
+            <div
+                className="shop-page-content"
+                style={{ filter: showModal ? "blur(7px)" : "none" }}
+            >
+                <Filter
+                    selectedFilters={selectedFilters}
+                    setSelectedFilters={setSelectedFilters}
+                />
+                <div className="shop-page-products">
+                    {selectedProducts.map((product, key) => (
+                        <ProductCard
+                            key={key}
+                            product={product}
+                            setModalProduct={setModalProduct}
+                        />
+                    ))}
+
+                    {/* TODO: Delete these, but for testing purposes, leave them in */}
+                    {selectedProducts.map((product, key) => (
+                        <ProductCard
+                            key={key}
+                            product={product}
+                            setModalProduct={setModalProduct}
+                        />
+                    ))}
+                    {selectedProducts.map((product, key) => (
+                        <ProductCard
+                            key={key}
+                            product={product}
+                            setModalProduct={setModalProduct}
+                        />
+                    ))}
+                </div>
             </div>
+
+            {/* PRODUCT MODAL */}
+            {showModal && (
+                <ProductModal
+                    product={modalProduct}
+                    setModalProduct={setModalProduct}
+                />
+            )}
             <Footer />
         </div>
     );

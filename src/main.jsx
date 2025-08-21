@@ -18,7 +18,7 @@ createRoot(document.getElementById("root")).render(
                 <Routes>
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/shop/:filter?" element={<ShopPage />} />
-                    <Route path="/free-kits" element={<FreePage />} />
+                    <Route path="/shop/free-kits" element={<FreePage />} />
                     <Route
                         path="/product/:productId"
                         element={<ProductPage />}

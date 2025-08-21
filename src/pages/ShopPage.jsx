@@ -11,7 +11,7 @@ import "../styles/ShopPage.css";
 function ShopPage() {
     const { filter } = useParams();
     const [selectedFilters, setSelectedFilters] = useState(
-        filter && filter !== "free-kits" ? [filter] : []
+        filter ? [filter] : []
     );
     const [products, setProducts] = useState([]);
     const [selectedProducts, setSelectedProducts] = useState([]);
@@ -19,25 +19,15 @@ function ShopPage() {
     const [modalProduct, setModalProduct] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const isFree = filter === "free-kits";
-
     // Get the products from the database
     useEffect(() => {
         const fetchProducts = async () => {
             setLoading(true);
 
             try {
-                let res;
-
-                if (isFree) {
-                    res = await fetch(
-                        "http://localhost:5000/getProducts?type=free"
-                    );
-                } else {
-                    res = await fetch(
-                        "http://localhost:5000/getProducts?type=paid"
-                    );
-                }
+                const res = await fetch(
+                    "http://localhost:5000/getProducts?type=paid"
+                );
 
                 const data = await res.json();
 
@@ -60,9 +50,7 @@ function ShopPage() {
 
     // Update filters
     useEffect(() => {
-        if (filter !== "free-kits") {
-            setSelectedFilters([filter]);
-        }
+        setSelectedFilters([filter]);
     }, [filter]);
 
     // Update products on display
@@ -110,16 +98,6 @@ function ShopPage() {
             document.removeEventListener("keydown", handleEscape);
         };
     }, [showModal]);
-
-    // TODO: Delete this one
-    useEffect(() => {
-        console.log(
-            "Filters:",
-            selectedFilters,
-            "\nProducts:",
-            selectedProducts
-        );
-    }, [selectedFilters]);
 
     if (loading) return <Loader />;
 
