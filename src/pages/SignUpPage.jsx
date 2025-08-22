@@ -17,12 +17,24 @@ function SignUpPage() {
     const handleSignup = async (e) => {
         e.preventDefault();
 
-        if (password !== confirmPassword) {
+        if (!email) {
+            setError("Email is required.");
+            return;
+        } else if (!email.includes("@") || !email.includes(".")) {
+            setError("Enter valid email.");
+            return;
+        } else if (!password) {
+            setError("Password is required.");
+            return;
+        } else if (!confirmPassword) {
+            setError("Confirm password is required.");
+            return;
+        } else if (password !== confirmPassword) {
             setError("Passwords do not match.");
             return;
         }
 
-        const response = await fetch("/api/createUser", {
+        const response = await fetch("http://localhost:5000/createUser", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -35,6 +47,7 @@ function SignUpPage() {
         if (data.error) {
             setError(data.error);
         } else {
+            localStorage.setItem("uid", data.id);
             navigate("/"); // redirect to homepage after signup
         }
     };
@@ -48,12 +61,11 @@ function SignUpPage() {
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
                         <input
-                            type="email"
+                            // type="email"
                             id="email"
                             placeholder="Enter your email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            required
                         />
                     </div>
 
@@ -67,7 +79,6 @@ function SignUpPage() {
                                 placeholder="Enter your password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                required
                             />
                             <span
                                 className="password-toggle"
@@ -92,7 +103,7 @@ function SignUpPage() {
                                 onChange={(e) =>
                                     setConfirmPassword(e.target.value)
                                 }
-                                required
+                                // required
                             />
                             <span
                                 className="password-toggle"

@@ -11,12 +11,14 @@ app.use(
         origin: "http://localhost:5173",
     })
 );
+app.use(express.json());
 
 const port = 5000;
 
 const supabase = createClient(
     process.env.SUPABASE_URL,
-    process.env.SUPABASE_ANON_KEY
+    // process.env.SUPABASE_ANON_KEY,
+    process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
 ////////////////////////////////////////////// PRODUCTS SECTION
@@ -98,7 +100,6 @@ app.get("/getProductById", async (req, res) => {
 // - id (use auth)
 // - purchased (init to "")
 // - cart (init to "")
-
 app.post("/createUser", async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -107,12 +108,11 @@ app.post("/createUser", async (req, res) => {
         const { data, error } = await supabase.auth.admin.createUser({
             email,
             password,
-            email_confirm: true, // optional: auto-confirm so user doesn’t need to verify email
+            email_confirm: true,
         });
 
         if (error) return res.status(400).json({ error: error.message });
 
-        // optional: insert into your own "users" table for extra fields
         await supabase.from("users").insert([
             {
                 id: data.user.id, // same id as auth user
@@ -131,6 +131,28 @@ app.post("/createUser", async (req, res) => {
 // Given email and password, this verifies a user trying to log in
 app.post("/verifyUser", async (req, res) => {
     const { email, password } = req.body;
+
+    try {
+        // Sign in with Supabase Auth
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+        });
+
+        if (error) {
+            return res.status(401).json({ error: "Invalid email or password" });
+        }
+
+        const user = data.user;
+
+        res.status(200).json({
+            success: true,
+            id: user.id,
+        });
+    } catch (err) {
+        console.error("Unexpected error verifying user:", err);
+        res.status(500).json({ error: "Internal server error" });
+    }
 });
 
 // Given the uid of a user, get their account details

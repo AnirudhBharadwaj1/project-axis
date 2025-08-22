@@ -14,6 +14,14 @@ function LoginPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevent page refresh
+
+        if (!email) {
+            setError("Email is required.");
+            return;
+        } else if (!password) {
+            setError("Password is required.");
+            return;
+        }
         setError("");
 
         try {
@@ -28,6 +36,7 @@ function LoginPage() {
             const data = await response.json();
 
             if (response.ok && data.success) {
+                localStorage.setItem("uid", data.id);
                 navigate("/");
             } else {
                 setError(data.message || "Invalid email or password.");
