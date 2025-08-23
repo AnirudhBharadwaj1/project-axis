@@ -7,6 +7,7 @@ Objective: Finish general frontend
 --------------------- WEEK 2 ---------------------
 Objective: Finish login related functionality
 - Make logout button actually log you out
+- Make forgot password button do something
 - Make account page
     - Has the following:
         - Account details (email and password)
