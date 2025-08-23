@@ -44,11 +44,11 @@ function SignUpPage() {
         });
 
         const data = await response.json();
-        if (data.error) {
+        if (data.success === false) {
             setError(data.error);
         } else {
-            localStorage.setItem("uid", data.id);
-            navigate("/"); // redirect to homepage after signup
+            // localStorage.setItem("uid", data.id);
+            navigate("/login"); // redirect to homepage after signup
         }
     };
 

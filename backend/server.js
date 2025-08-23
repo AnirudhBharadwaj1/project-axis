@@ -111,20 +111,19 @@ app.post("/createUser", async (req, res) => {
             email_confirm: true,
         });
 
-        if (error) return res.status(400).json({ error: error.message });
+        // if (error) return res.status(400).json({ error: error.message });
+        if (error) return res.json({ success: false, error: error.message });
 
         await supabase.from("users").insert([
             {
                 id: data.user.id, // same id as auth user
-                cart: "",
-                purchased: "",
             },
         ]);
 
-        res.json({ message: "User created", user: data.user });
+        res.json({ success: true, user: data.user });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: "Internal server error" });
+        res.json({ success: false, error: "Internal server error" });
     }
 });
 
@@ -163,16 +162,18 @@ app.get("/getUser", async (req, res) => {
         .from("users")
         .select("*")
         .eq("id", uid)
-        .single();
+        .maybeSingle();
 
     if (error) {
         console.error("Error retreiving user:", error);
         return res.status(500).json({ error: error.message });
     }
 
+    if (!data) return res.status(404).json({ error: "User not found" });
+
     const user = {
-        purchased: data.purchased,
-        cart: data.cart,
+        purchased: data.purchased.split(","),
+        cart: data.cart.split(","),
     };
 
     res.json(user);

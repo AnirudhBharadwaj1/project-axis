@@ -25,7 +25,7 @@ function LoginPage() {
         setError("");
 
         try {
-            const response = await fetch("/verifyUser", {
+            const response = await fetch("http://localhost:5000/verifyUser", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

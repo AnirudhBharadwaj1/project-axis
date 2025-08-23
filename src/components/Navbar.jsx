@@ -5,9 +5,9 @@ import "../styles/Navbar.css";
 
 function Navbar() {
     const [open, setOpen] = useState(false);
-
-    // TODO: replace with real auth state
-    const loggedIn = false;
+    const [loggedIn, setLoggedIn] = useState(
+        localStorage.getItem("uid") != null
+    );
 
     return (
         <div className="navbar-div">
