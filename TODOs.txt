@@ -3,10 +3,11 @@ Objective: Finish general frontend
 - Set up db for media
 - Make checkout page
 - Make loading animation
+- Modals on shop page sometimes fade in and sometimes just appear
 
 --------------------- WEEK 2 ---------------------
 Objective: Finish login related functionality
-- Make logout button actually log you out
+- Switch everything up to be more secure (use session tokens)
 - Make forgot password button do something
 - Make account page
     - Has the following:

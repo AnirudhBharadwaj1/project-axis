@@ -1,0 +1,19 @@
+.account-page-details-container {
+    background: #1f1f1f;
+    width: 70%;
+    height: 50rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.account-page-details-header {
+    color: white;
+    font-family: "Montserrat", serif;
+    font-size: 2rem;
+}
+
+.account-page-details-textbox {
+    /*  */
+}

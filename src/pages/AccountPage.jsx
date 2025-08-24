@@ -33,7 +33,9 @@ function AccountPage() {
     return (
         <div className="page scrollbar">
             <Navbar />
-            <div>YOUR ACCOUNT!!!</div>
+            <div className="account-page-details-container">
+                <h3 className="account-page-details-header">Account Details</h3>
+            </div>
             {userInfo && (
                 <>
                     <h3>Your cart: {userInfo.cart}</h3>
