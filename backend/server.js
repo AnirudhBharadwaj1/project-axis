@@ -154,6 +154,23 @@ app.post("/verifyUser", async (req, res) => {
     }
 });
 
+// Handle logging out a user
+app.post("/logOut", async (req, res) => {
+    try {
+        const { error } = await supabase.auth.signOut();
+
+        if (error) {
+            console.error("Error signing out:", error);
+            return res.status(500).json({ error: error.message });
+        }
+
+        res.json({ success: true });
+    } catch (err) {
+        console.error("Unexpected error during logout:", err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
 // Given the uid of a user, get their account details
 app.get("/getUser", async (req, res) => {
     const { uid } = req.query;

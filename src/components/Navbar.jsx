@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FiUser } from "react-icons/fi";
 import "../styles/Navbar.css";
 
@@ -8,6 +8,33 @@ function Navbar() {
     const [loggedIn, setLoggedIn] = useState(
         localStorage.getItem("uid") != null
     );
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleLogOut = async () => {
+        try {
+            const res = await fetch("http://localhost:5000/logout", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                localStorage.removeItem("uid");
+                setLoggedIn(false);
+
+                if (location.pathname === "/account") {
+                    navigate("/login");
+                } else {
+                    window.location.reload();
+                }
+            }
+        } catch (error) {
+            console.error("Error logging out:", error);
+        }
+    };
 
     return (
         <div className="navbar-div">
@@ -56,9 +83,7 @@ function Navbar() {
                                 <button
                                     type="button"
                                     className="navbar-account-link"
-                                    onClick={() => {
-                                        /* your logout logic */
-                                    }}
+                                    onClick={() => handleLogOut()}
                                     role="menuitem"
                                 >
                                     Log Out

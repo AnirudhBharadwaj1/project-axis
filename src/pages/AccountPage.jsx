@@ -34,10 +34,12 @@ function AccountPage() {
         <div className="page scrollbar">
             <Navbar />
             <div>YOUR ACCOUNT!!!</div>
-            {userInfo && 
-            <h3>Your cart: {userInfo.cart}</h3>
-            <h3>Your purchase history: {userInfo.purchased}</h3>
-            }
+            {userInfo && (
+                <>
+                    <h3>Your cart: {userInfo.cart}</h3>
+                    <h3>Your purchase history: {userInfo.purchased}</h3>
+                </>
+            )}
             <Footer />
         </div>
     );
