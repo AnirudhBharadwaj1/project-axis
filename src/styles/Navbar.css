@@ -113,3 +113,37 @@
     background: rgba(255, 255, 255, 0.89);
     color: black;
 }
+
+@media (max-width: 1280px) {
+    .navbar-div {
+        padding: 0rem 2rem;
+    }
+
+    .navbar-title {
+        font-size: 1.3rem;
+    }
+
+    .navbar-routes {
+        gap: 3rem;
+    }
+
+    .navbar-link {
+        font-size: 1.3rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .navbar-account-div {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .navbar-account-dropdown {
+        transform: translateY(-6px);
+        width: 6rem;
+    }
+
+    .navbar-account-link {
+        font-size: 1.1rem;
+        padding: 0.25rem 0.5rem;
+    }
+}
