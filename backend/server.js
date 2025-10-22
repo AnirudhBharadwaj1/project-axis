@@ -189,8 +189,8 @@ app.get("/getUser", async (req, res) => {
     if (!data) return res.status(404).json({ error: "User not found" });
 
     const user = {
-        purchased: data.purchased.split(","),
-        cart: data.cart.split(","),
+        purchased: data.purchased ? data.purchased.split(",") : [],
+        cart: data.cart ? data.cart.split(",") : [],
     };
 
     res.json(user);
