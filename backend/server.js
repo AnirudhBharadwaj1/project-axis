@@ -191,6 +191,7 @@ app.get("/getUser", async (req, res) => {
     const user = {
         purchased: data.purchased ? data.purchased.split(",") : [],
         cart: data.cart ? data.cart.split(",") : [],
+        msgHistory: data.msgHistory,
     };
 
     res.json(user);
