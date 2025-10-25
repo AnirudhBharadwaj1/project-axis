@@ -1,6 +1,6 @@
 import "../styles/Filter.css";
 
-function Filter({ selectedFilters, setSelectedFilters }) {
+function Filter({ selectedFilters, setSelectedFilters, setManualChange }) {
     const filterOptions = [
         "drum-kits",
         "one-shot-kits",
@@ -17,6 +17,9 @@ function Filter({ selectedFilters, setSelectedFilters }) {
 
     const handleFilterChange = (e) => {
         const { value, checked } = e.target;
+
+        if (setManualChange) setManualChange(true);
+
         setSelectedFilters((prev) => {
             if (checked) {
                 return [...prev, value];
@@ -29,7 +32,6 @@ function Filter({ selectedFilters, setSelectedFilters }) {
     return (
         <div className="filter-div">
             {filterOptions.map((option) => (
-                // <label key={option} className="filter-checkbox-label">
                 <label
                     key={option}
                     className={`filter-checkbox-label ${

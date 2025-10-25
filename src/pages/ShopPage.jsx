@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 import Filter from "../components/Filter";
@@ -9,10 +9,12 @@ import Footer from "../components/Footer";
 import "../styles/ShopPage.css";
 
 function ShopPage() {
+    const navigate = useNavigate();
     const { filter } = useParams();
     const [selectedFilters, setSelectedFilters] = useState(
-        filter ? [filter] : []
+        filter ? filter.split("+") : []
     );
+    const [manualChange, setManualChange] = useState(false);
     const [products, setProducts] = useState([]);
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -50,8 +52,21 @@ function ShopPage() {
 
     // Update filters
     useEffect(() => {
-        setSelectedFilters([filter]);
+        setSelectedFilters(filter ? filter.split("+") : []);
+        setManualChange(false);
     }, [filter]);
+
+    // Update link depending on products
+    useEffect(() => {
+        const currentPath = filter ? `/shop/${filter}` : "/shop";
+        const newPath = selectedFilters.length
+            ? `/shop/${selectedFilters.join("+")}`
+            : "/shop";
+
+        if (manualChange && currentPath !== newPath) {
+            navigate(newPath, { replace: true });
+        }
+    }, [selectedFilters, manualChange, filter]);
 
     // Update products on display
     useEffect(() => {
@@ -102,6 +117,7 @@ function ShopPage() {
                 <Filter
                     selectedFilters={selectedFilters}
                     setSelectedFilters={setSelectedFilters}
+                    setManualChange={setManualChange}
                 />
                 <div className="shop-page-products">
                     {selectedProducts.map((product, key) => (
@@ -113,7 +129,7 @@ function ShopPage() {
                     ))}
 
                     {/* TODO: Delete these, but for testing purposes, leave them in */}
-                    {selectedProducts.map((product, key) => (
+                    {/* {selectedProducts.map((product, key) => (
                         <ProductCard
                             key={key}
                             product={product}
@@ -126,7 +142,7 @@ function ShopPage() {
                             product={product}
                             setModalProduct={setModalProduct}
                         />
-                    ))}
+                    ))} */}
                 </div>
             </div>
 

@@ -3,10 +3,6 @@ Objective: Finish general frontend
 - Set up db for media
 - Make checkout page
 - Make loading animation
-- Shop page
-    - Escape does not smoothly close modals
-    - Change the way the URL works (have it update dynamically with each filter or just remove the filter from the URL)
-- Modals on shop page sometimes fade in and sometimes just appear
 - Reponsiveness
 
 --------------------- SECTION 2 ---------------------
