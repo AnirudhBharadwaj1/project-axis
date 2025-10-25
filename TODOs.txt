@@ -1,11 +1,11 @@
---------------------- SECTION 1 ---------------------
+--------------------- OBJECTIVE 1 ---------------------
 Objective: Finish general frontend
 - Set up db for media
 - Make checkout page
 - Make loading animation
 - Reponsiveness
 
---------------------- SECTION 2 ---------------------
+--------------------- OBJECTIVE 2 ---------------------
 Objective: Finish login related functionality
 - Switch everything up to be more secure (use session tokens)
 - Make forgot password button do something
@@ -16,10 +16,15 @@ Objective: Finish login related functionality
         - Purchase history
 - Merge local storage cart with user's cart if signed in
 
---------------------- SECTION 3 ---------------------
+--------------------- OBJECTIVE 3 ---------------------
 Objective: Finish admin side
 - Finish admin login page
 - Finish page for adding new kits
 
---------------------- SECTION 4 ---------------------
+--------------------- OBJECTIVE 4 ---------------------
 Objective: Finish AI agent
+- Finish the component for it with the chat popping up and stuff
+- Allow it to respond to user queries
+- Make it agentic by:
+    - Allowing it to add items to user's cart with consent
+    - Allow it to take users to the product page

@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import "../styles/AccountPage.css";
 
 function AccountPage() {
@@ -32,7 +30,6 @@ function AccountPage() {
 
     return (
         <div className="page scrollbar">
-            <Navbar />
             <div className="account-page-details-container">
                 <h3 className="account-page-details-header">Account Details</h3>
             </div>
@@ -42,7 +39,6 @@ function AccountPage() {
                     <h3>Your purchase history: {userInfo.purchased}</h3>
                 </>
             )}
-            <Footer />
         </div>
     );
 }

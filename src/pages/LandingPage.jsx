@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import "../styles/LandingPage.css";
 import Loader from "../components/Loader";
-import Navbar from "../components/Navbar";
 import KitSlides from "../components/KitSlides";
 import BestSelling from "../components/BestSelling";
-import Footer from "../components/Footer";
 
 function LandingPage() {
     const [products, setProducts] = useState([]);
@@ -43,7 +41,6 @@ function LandingPage() {
 
     return (
         <div className="page scrollbar">
-            <Navbar />
             {products.length > 0 && <KitSlides products={products} />}
             {products.length > 0 && <BestSelling products={products} />}
             <div className="shop-now-div">
@@ -52,7 +49,6 @@ function LandingPage() {
                     {/* TODO: INSERT THE VIDEOS HERE */}
                 </div>
             </div>
-            <Footer />
         </div>
     );
 }

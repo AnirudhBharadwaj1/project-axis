@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import "../styles/LoginPage.css";
 
@@ -49,7 +47,6 @@ function LoginPage() {
 
     return (
         <div className="page scrollbar">
-            <Navbar />
             <div className="login-container">
                 <form className="login-form" onSubmit={handleSubmit}>
                     {/* Email */}
@@ -105,7 +102,6 @@ function LoginPage() {
                     </p>
                 </form>
             </div>
-            <Footer />
         </div>
     );
 }

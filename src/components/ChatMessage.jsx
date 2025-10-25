@@ -1,6 +1,6 @@
 import "../styles/Chat.css";
 
-function ChatMessage() {
+function ChatMessage({ message }) {
     return (
         <div>
             <h1>YFODSA</h1>

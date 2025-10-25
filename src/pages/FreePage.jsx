@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import Loader from "../components/Loader";
-import Navbar from "../components/Navbar";
 import Filter from "../components/Filter";
 import ProductCard from "../components/ProductCard";
 import ProductModal from "../components/ProductModal";
-import Footer from "../components/Footer";
 import "../styles/ShopPage.css";
 
 function FreePage() {
@@ -86,7 +83,6 @@ function FreePage() {
 
     return (
         <div className="page scrollbar">
-            <Navbar />
             <div
                 className="shop-page-content"
                 style={{ filter: showModal ? "blur(7px)" : "none" }}
@@ -129,7 +125,6 @@ function FreePage() {
                     setModalProduct={setModalProduct}
                 />
             )}
-            <Footer />
         </div>
     );
 }

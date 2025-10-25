@@ -2,8 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
 import Loader from "../components/Loader";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import "../styles/ProductPage.css";
 
 import gladius from "../assets/temp/gladius.jpeg";
@@ -42,7 +40,6 @@ function ProductPage() {
 
     return (
         <div className="page scrollbar">
-            <Navbar />
             {product && (
                 <div className="product-page-div">
                     <div className="product-videos">
@@ -91,7 +88,6 @@ function ProductPage() {
                     </div>
                 </div>
             )}
-            <Footer />
         </div>
     );
 }
