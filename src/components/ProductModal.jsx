@@ -25,10 +25,19 @@ function ProductModal({ product, setModalProduct }) {
     // Close the modal if the background is clicked
     const handleBackgroundClick = (e) => {
         if (e.target.classList.contains("product-modal-backdrop")) {
-            // setModalProduct(null);
             handleClose();
         }
     };
+
+    // Close the modal if escape is clicked
+    useEffect(() => {
+        const handleEscape = (e) => {
+            if (e.key == "Escape") handleClose();
+        };
+
+        document.addEventListener("keydown", handleEscape);
+        return () => document.removeEventListener("keydown", handleEscape);
+    }, []);
 
     return (
         <>
@@ -46,7 +55,6 @@ function ProductModal({ product, setModalProduct }) {
                     >
                         <FaTimes
                             className="product-modal-close"
-                            // onClick={() => setModalProduct(null)}
                             onClick={handleClose}
                         />
 

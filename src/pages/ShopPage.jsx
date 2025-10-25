@@ -85,17 +85,8 @@ function ShopPage() {
 
         document.body.style.overflow = showModal ? "hidden" : "auto";
 
-        const handleEscape = (e) => {
-            if (e.key === "Escape" && showModal) {
-                setModalProduct(null);
-            }
-        };
-
-        document.addEventListener("keydown", handleEscape);
-
         return () => {
             document.body.style.overflow = "auto";
-            document.removeEventListener("keydown", handleEscape);
         };
     }, [showModal]);
 
