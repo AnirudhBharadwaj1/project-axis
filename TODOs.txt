@@ -1,11 +1,15 @@
---------------------- WEEK 1 ---------------------
+--------------------- SECTION 1 ---------------------
 Objective: Finish general frontend
 - Set up db for media
 - Make checkout page
 - Make loading animation
+- Shop page
+    - Escape does not smoothly close modals
+    - Change the way the URL works (have it update dynamically with each filter or just remove the filter from the URL)
 - Modals on shop page sometimes fade in and sometimes just appear
+- Reponsiveness
 
---------------------- WEEK 2 ---------------------
+--------------------- SECTION 2 ---------------------
 Objective: Finish login related functionality
 - Switch everything up to be more secure (use session tokens)
 - Make forgot password button do something
@@ -16,7 +20,10 @@ Objective: Finish login related functionality
         - Purchase history
 - Merge local storage cart with user's cart if signed in
 
---------------------- WEEK 3 ---------------------
+--------------------- SECTION 3 ---------------------
 Objective: Finish admin side
 - Finish admin login page
 - Finish page for adding new kits
+
+--------------------- SECTION 4 ---------------------
+Objective: Finish AI agent

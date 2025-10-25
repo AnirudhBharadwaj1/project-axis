@@ -10,6 +10,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import AccountPage from "./pages/AccountPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(
@@ -19,7 +20,7 @@ createRoot(document.getElementById("root")).render(
                 <Routes>
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/shop/:filter?" element={<ShopPage />} />
-                    <Route path="/shop/free-kits" element={<FreePage />} />
+                    <Route path="/free-kits" element={<FreePage />} />
                     <Route
                         path="/product/:productId"
                         element={<ProductPage />}
@@ -28,6 +29,7 @@ createRoot(document.getElementById("root")).render(
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/account" element={<AccountPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </Router>
         </CartProvider>
