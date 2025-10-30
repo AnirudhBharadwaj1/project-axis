@@ -2,9 +2,8 @@ import "../styles/Chat.css";
 
 function ChatMessage({ message }) {
     return (
-        <div>
-            <h1>YFODSA</h1>
-            <h1>YFODSA</h1>
+        <div className="chat-message">
+            <p className="chat-text">{message.text}</p>
         </div>
     );
 }

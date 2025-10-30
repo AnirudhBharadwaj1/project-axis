@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { FaCommentAlt, FaTimes, FaPaperPlane } from "react-icons/fa";
+import ChatMessage from "../components/ChatMessage";
 import "../styles/Chat.css";
-import { FaCommentAlt, FaTimes } from "react-icons/fa";
+import logo from "../assets/logo_light.png";
 
 function ChatBox() {
     const [open, setOpen] = useState(false);
@@ -49,9 +51,14 @@ function ChatBox() {
         e.preventDefault();
         if (!msgText.trim()) return;
 
-        setMessages(...prev, { text: msgText.trim(), sender: "user" });
+        setMessages((prev) => [
+            ...prev,
+            { text: msgText.trim(), sender: "user" },
+        ]);
         setMsgText("");
         setSendMessage(false);
+
+        console.log(messages);
 
         // TODO: Get response
 
@@ -63,12 +70,13 @@ function ChatBox() {
             {open && (
                 <div className="chat-box">
                     <div className="chat-header">
-                        <h1>YOO</h1>
+                        <img src={logo} alt="Logo" className="chat-logo" />
+                        <h3 className="chat-title">AXIS CHATBOT</h3>
                     </div>
                     <div className="chat-messages">
-                        {messages.map((message) => {
-                            <ChatMessage message={message} />;
-                        })}
+                        {messages.map((message, index) => (
+                            <ChatMessage key={index} message={message} />
+                        ))}
                     </div>
                     <form className="chat-area" onSubmit={handleSubmit}>
                         <textarea
@@ -77,12 +85,20 @@ function ChatBox() {
                             value={msgText}
                             onChange={(e) => setMsgText(e.target.value)}
                             rows={2}
+                            onKeyDown={(e) => {
+                                if (e.key == "Enter" && !e.shiftKey) {
+                                    e.preventDefault();
+                                    handleSubmit(e);
+                                }
+                            }}
                         ></textarea>
                         <button
                             className="chat-area-button"
                             type="submit"
                             disabled={!sendMessage}
-                        ></button>
+                        >
+                            <FaPaperPlane size={20} />
+                        </button>
                     </form>
                 </div>
             )}

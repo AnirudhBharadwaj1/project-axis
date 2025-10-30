@@ -8,6 +8,28 @@
     align-items: flex-end;
 }
 
+.chat-header {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    padding: 1rem;
+    /* justify-content: center; */
+    align-items: center;
+    height: 4rem;
+}
+
+.chat-title {
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.chat-logo {
+    width: 3rem;
+    height: 3rem;
+}
+
 .chat-button {
     color: white;
     background-color: black;
@@ -43,6 +65,9 @@
     background-color: #151515;
     flex: 1;
     height: 50rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .chat-area {
@@ -77,4 +102,27 @@
     cursor: pointer;
     width: 3rem;
     height: 3rem;
+    background-color: white;
+    color: black;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.chat-message {
+    padding: 0.5rem;
+    background-color: navy;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.chat-text {
+    font-family: "Agdasima", serif;
+    font-size: 1.2rem;
+    color: white;
+    white-space: pre-wrap;
+    /* max-width: 45%; */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
