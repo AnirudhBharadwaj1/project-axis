@@ -23,7 +23,6 @@ Objective: Finish admin side
 
 --------------------- OBJECTIVE 4 ---------------------
 Objective: Finish AI agent
-- Finish the component for it with the chat popping up and stuff
 - Allow it to respond to user queries
 - Make it agentic by:
     - Allowing it to add items to user's cart with consent
