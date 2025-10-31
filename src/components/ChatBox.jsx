@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaCommentAlt, FaTimes, FaPaperPlane } from "react-icons/fa";
 import ChatMessage from "../components/ChatMessage";
 import "../styles/Chat.css";
@@ -10,6 +11,8 @@ function ChatBox() {
     const [msgText, setMsgText] = useState("");
     const [sendMessage, setSendMessage] = useState(true);
     const [bottomOffset, setBottomOffset] = useState(2);
+    const [productInfo, setProductInfo] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -47,20 +50,49 @@ function ChatBox() {
     };
 
     // Handle submitting the message
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!msgText.trim()) return;
 
-        setMessages((prev) => [
-            ...prev,
-            { text: msgText.trim(), sender: "user" },
-        ]);
+        const userText = msgText.trim();
+
+        setMessages((prev) => [...prev, { text: userText, sender: "user" }]);
         setMsgText("");
         setSendMessage(false);
 
-        console.log(messages);
+        // Get response from endpoint
+        try {
+            const res = await fetch("http://localhost:5000/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    message: userText,
+                    prevMessage: something,
+                    productInfo,
+                }),
+            });
 
-        // TODO: Get response
+            const data = await res.json();
+
+            // Possible responses from AI with the keywords
+            if (data.action === "redirect") {
+                const page = data.split(":")[1].trim();
+                navigate(`/product/${page}`);
+            } else if (data.action === "cart") {
+                console.log("Add to cart");
+                setMessages((prev) => [
+                    ...prev,
+                    {
+                        text: "The item has been added to your cart",
+                        sender: "bot",
+                    },
+                ]);
+            } else if (data.action === "respond") {
+                setMessages((prev) => [...prev, { text: data, sender: "bot" }]);
+            }
+        } catch (error) {
+            console.error("Error with chatbot:", error);
+        }
 
         setSendMessage(true);
     };

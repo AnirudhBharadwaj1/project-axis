@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import OpenAI from "openai";
 
 dotenv.config();
 
@@ -17,9 +18,10 @@ const port = 5000;
 
 const supabase = createClient(
     process.env.SUPABASE_URL,
-    // process.env.SUPABASE_ANON_KEY,
     process.env.SUPABASE_SERVICE_ROLE_KEY
 );
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 ////////////////////////////////////////////// PRODUCTS SECTION
 // Gets the list of products
@@ -46,6 +48,7 @@ app.get("/getProducts", async (req, res) => {
         tags: product.tags.split(","),
         numSold: product.num_sold,
         price: product.price,
+        genres: product.genres || [],
     }));
 
     // If paid products should be returned
@@ -85,6 +88,7 @@ app.get("/getProductById", async (req, res) => {
         includes: data.includes.split(","),
         time: data.time,
         tags: data.tags.split(","),
+        genres: data.genres || [],
         numSold: data.num_sold,
         price: data.price,
         paidProductId: data.paid_product_id,
@@ -194,6 +198,72 @@ app.get("/getUser", async (req, res) => {
     };
 
     res.json(user);
+});
+
+////////////////////////////////////////////// AI SECTION
+app.post("/api/chat", async (req, res) => {
+    try {
+        const { message, prevMessage, productInfo } = req.body;
+
+        const prompt = `
+        You are an assistant helping a customer with their queries about purchasing a sound pack from an online store.
+        They have just asked you the following:
+        "${message}"
+
+        ${
+            prevMessage
+                ? `Before that, you had responded:
+        "${prevMessage}"`
+                : ""
+        }
+
+        Now, you need to decide three things:
+
+        1) What the "action" field should be. For this field, there are three options you can choose from:
+        - "redirect": This option is for if the user wishes to be taken to a product's page.
+        - "cart": This option is for if the user wishes to add the current product to their cart.
+        - "respond": This option is if the user has not indicated the above two and is just asking a question.
+        Make your decision on which of these three to choose based on the message history provided earlier.
+
+        2) What the "target" field should be.  
+        If the "action" field is "redirect" or "cart", set this field to the **id of the product being discussed** in the conversation.  
+        The product information is provided below.  
+        If the "action" field is "respond", leave this field as an empty string ("").
+
+        3) What the "response" field should be.  
+        Only if the "action" field is set to "respond", add your response to the user's message (provided above) into this field.  
+        In any other case, leave this field as an empty string ("").
+
+        Here are the products and their associated information:
+        ${productInfo}
+
+        Finally, always respond in **valid JSON** with the following fields:
+        {
+        "action": string,
+        "target": string,
+        "response": string
+        }
+
+        Never include text outside the JSON.
+        `;
+
+        const resp = await openai.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: [
+                {
+                    role: "system",
+                    content: prompt,
+                },
+            ],
+            response_format: { type: "json_object" },
+        });
+
+        const reply = JSON.parse(resp.choices[0].message.content);
+        res.json(reply);
+    } catch (err) {
+        console.error("Chatbot error:", err);
+        res.status(500).json({ error: "Failed to fetch GPT response" });
+    }
 });
 
 app.listen(port, () => {
