@@ -11,7 +11,7 @@ function ChatBox() {
     const [msgText, setMsgText] = useState("");
     const [sendMessage, setSendMessage] = useState(true);
     const [bottomOffset, setBottomOffset] = useState(2);
-    const [productInfo, setProductInfo] = useState({});
+    const [productInfo, setProductInfo] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -49,11 +49,54 @@ function ChatBox() {
         // TODO: Add an animation here
     };
 
+    // Get the products from the database
+    useEffect(() => {
+        const fetchProducts = async () => {
+            setLoading(true);
+
+            try {
+                const res = await fetch(
+                    "http://localhost:5000/getProducts?type=paid"
+                );
+
+                const data = await res.json();
+
+                const sorted = data.sort(
+                    (a, b) => new Date(b.time) - new Date(a.time)
+                );
+
+                const products = [];
+
+                sorted.forEach((product) => {
+                    products.push({
+                        id: product.id,
+                        name: product.name,
+                        description: product.desc,
+                        contents: product.includes.split(","),
+                        price: product.price,
+                        genres: product.genres || [],
+                    });
+                });
+
+                setProductInfo(products);
+            } catch (error) {
+                console.error(
+                    "Error fetching products on frontend side:",
+                    error
+                );
+            }
+        };
+
+        fetchProducts();
+        setLoading(false);
+    }, []);
+
     // Handle submitting the message
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!msgText.trim()) return;
 
+        const prevMessage = messages[messages.length - 1];
         const userText = msgText.trim();
 
         setMessages((prev) => [...prev, { text: userText, sender: "user" }]);
@@ -67,7 +110,7 @@ function ChatBox() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     message: userText,
-                    prevMessage: something,
+                    prevMessage,
                     productInfo,
                 }),
             });
@@ -76,7 +119,7 @@ function ChatBox() {
 
             // Possible responses from AI with the keywords
             if (data.action === "redirect") {
-                const page = data.split(":")[1].trim();
+                const page = data.target;
                 navigate(`/product/${page}`);
             } else if (data.action === "cart") {
                 console.log("Add to cart");

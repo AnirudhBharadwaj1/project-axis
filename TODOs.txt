@@ -24,7 +24,8 @@ Objective: Finish admin side
 --------------------- OBJECTIVE 4 ---------------------
 Objective: Finish AI agent
 - Allow it to respond to user queries
-    - Clean up the code in ChatBox and implement the fields that still need to be implemented
+    - Finish add to cart functionality
+    - Make prompt handle user questions
 - Make it agentic by:
     - Allowing it to add items to user's cart with consent
     - Allow it to take users to the product page
