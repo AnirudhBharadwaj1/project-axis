@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaCommentAlt, FaTimes, FaPaperPlane } from "react-icons/fa";
+import { CartContext } from "../contexts/CartContext";
 import ChatMessage from "../components/ChatMessage";
 import "../styles/Chat.css";
 import logo from "../assets/logo_light.png";
@@ -12,6 +13,7 @@ function ChatBox() {
     const [sendMessage, setSendMessage] = useState(true);
     const [bottomOffset, setBottomOffset] = useState(2);
     const [productInfo, setProductInfo] = useState([]);
+    const { cart, addToCart } = useContext(CartContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -122,11 +124,21 @@ function ChatBox() {
                 const page = data.target;
                 navigate(`/product/${page}`);
             } else if (data.action === "cart") {
-                console.log("Add to cart");
+                // console.log("Add to cart");
+
+                let text;
+
+                if (!cart.includes(data.target)) {
+                    addToCart(data.target);
+                    text = "The item has been added to your cart.";
+                } else {
+                    text = "The item is already in your cart.";
+                }
+
                 setMessages((prev) => [
                     ...prev,
                     {
-                        text: "The item has been added to your cart",
+                        text: text,
                         sender: "bot",
                     },
                 ]);

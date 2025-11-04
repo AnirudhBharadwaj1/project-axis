@@ -233,6 +233,7 @@ app.post("/api/chat", async (req, res) => {
         3) What the "response" field should be.  
         Only if the "action" field is set to "respond", add your response to the user's message (provided above) into this field.  
         In any other case, leave this field as an empty string ("").
+        When answering the user's message, use the data from the products that will be provided below to answer the questions.
 
         Here are the products and their associated information:
         ${productInfo}
