@@ -7,6 +7,8 @@ Objective: Finish general frontend
 
 --------------------- OBJECTIVE 2 ---------------------
 Objective: Finish login related functionality
+- When wrong password is entered, it should stay on the same page and say wrong
+- Signup does not work anymore (does not create a row in Supabase table)
 - Switch everything up to be more secure (use session tokens)
 - Make forgot password button do something
 - Make account page
@@ -15,6 +17,11 @@ Objective: Finish login related functionality
         - Cart
         - Purchase history
 - Merge local storage cart with user's cart if signed in
+
+Testing Account:
+Username: user@gmail.com
+Password: testing
+UID: 3a9b1c25-f31e-46c6-b791-b5893eabc739
 
 --------------------- OBJECTIVE 3 ---------------------
 Objective: Finish admin side

@@ -118,11 +118,16 @@ app.post("/createUser", async (req, res) => {
         // if (error) return res.status(400).json({ error: error.message });
         if (error) return res.json({ success: false, error: error.message });
 
-        await supabase.from("users").insert([
+        const { error: insertError } = await supabase.from("users").insert([
             {
                 id: data.user.id, // same id as auth user
             },
         ]);
+
+        if (insertError) {
+            console.error("Insert error:", insertError);
+            return res.json({ success: false, error: insertError.message });
+        }
 
         res.json({ success: true, user: data.user });
     } catch (err) {
