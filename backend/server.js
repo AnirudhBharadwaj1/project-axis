@@ -260,6 +260,9 @@ app.post("/api/chat", async (req, res) => {
         });
 
         const reply = JSON.parse(resp.choices[0].message.content);
+
+        console.log("DEBUG AI REPLY:", reply);
+
         res.json(reply);
     } catch (err) {
         console.error("Chatbot error:", err);

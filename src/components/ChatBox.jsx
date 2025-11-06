@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaCommentAlt, FaTimes, FaPaperPlane } from "react-icons/fa";
 import { CartContext } from "../contexts/CartContext";
@@ -13,6 +13,7 @@ function ChatBox() {
     const [sendMessage, setSendMessage] = useState(true);
     const [bottomOffset, setBottomOffset] = useState(2);
     const [productInfo, setProductInfo] = useState([]);
+    const [loading, setLoading] = useState(false);
     const { cart, addToCart } = useContext(CartContext);
     const navigate = useNavigate();
 
@@ -74,7 +75,7 @@ function ChatBox() {
                         id: product.id,
                         name: product.name,
                         description: product.desc,
-                        contents: product.includes.split(","),
+                        contents: product.includes,
                         price: product.price,
                         genres: product.genres || [],
                     });
