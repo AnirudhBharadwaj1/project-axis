@@ -30,8 +30,8 @@ Objective: Finish admin side
 
 --------------------- OBJECTIVE 4 ---------------------
 Objective: Finish AI agent
-- Allow it to respond to user queries
-    - Make prompt handle user questions - Should be done
-- Make it agentic by:
-    - Allowing it to add items to user's cart with consent - Should be done
-    - Allow it to take users to the product page - Should be done
+- Goal: Assist the user in navigating the store and encourage buying a product
+- Abilities:
+    - Respond to user queries
+    - Allow it to add items to user's cart
+    - Allow it to take users to the product page
