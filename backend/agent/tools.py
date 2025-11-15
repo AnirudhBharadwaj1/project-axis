@@ -11,6 +11,9 @@ def add(a: int, b: int) -> int:
 
 @tool
 def search_products(query: str) -> list:
+    """
+    A list of products that can be recommended to users
+    """
     # Fake data for now
     products = [
         {"id": 1, "name": "Trap Essentials Kit", "genre": "trap", "price": 30},
