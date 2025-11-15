@@ -25,3 +25,7 @@ dist-ssr
 
 # Database stuff
 .env
+
+# pycache
+__pycache__/
+*.pyc

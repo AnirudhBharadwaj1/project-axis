@@ -1,40 +1,47 @@
 from langchain.tools import tool
 
-# ///////////////////////////// TESTING TOOLS /////////////////////////////
-@tool
-def add(a: int, b: int) -> int:
-    """
-    Basic test to make sure the setup is working
-    """
-    return a + b
-# ///////////////////////////// TESTING TOOLS /////////////////////////////
-
 @tool
 def search_products(query: str) -> list:
     """
-    A list of products that can be recommended to users
+    Search for products in the store. If query is empty (""), return ALL products.
+    This mimics GET /products?search=<query>.
+    Always use this tool to fetch product lists or availability.
+
+    Product format:
+    id: This id should be kept internally and should NOT be given to the user.
+    name: The name of this product. These names are unique to each product.
+    genre: The music genres that suit this product.
+    price: The price in CAD of this product.
     """
-    # Fake data for now
     products = [
-        {"id": 1, "name": "Trap Essentials Kit", "genre": "trap", "price": 30},
+        {"id": 1, "name": "Trap Essentials Kit", "genre": "trap", "price": 10},
         {"id": 2, "name": "Boom Bap Drums", "genre": "boom bap", "price": 25},
         {"id": 3, "name": "Hyperpop FX Pack", "genre": "hyperpop", "price": 35},
         {"id": 4, "name": "808 Warfare Pack", "genre": "trap", "price": 40},
     ]
 
-    q = query.lower()
+    q = query.lower().strip()
+
+    if q == "":
+        return products
+
     return [p for p in products if q in p["genre"] or q in p["name"].lower()]
 
 @tool
 def add_to_cart(product_id: str) -> str:
     """
-    Add a product to the user's cart
+    This method adds a product to the user's cart. product_id is the id of the product that should
+    be added to the user's cart.
+    DO NOT call this unless the user has confirmed that they want to add the product to their cart
     """
-    return "The below product was added to your cart:\n", product_id
+    return f"Product {product_id} added to cart."
 
 @tool
 def navigate_to(product_id: str) -> str:
     """
-    Navigate the user to a product's page so they can get more information
+    Navigate the user to a product's page so they can get more information. product_id is the product
+    that will be showcased on the product page.
+    DO NOT call this unless the user has confirmed that they wish to be redirected (ex. to see more
+    information about a product, etc.)
     """
     return f"/product/:{product_id}"
