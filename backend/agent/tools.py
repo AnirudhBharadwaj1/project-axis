@@ -5,7 +5,14 @@ def search_products(query: str) -> list:
     """
     Search for products in the store. If query is empty (""), return ALL products.
     This mimics GET /products?search=<query>.
-    Always use this tool to fetch product lists or availability.
+    Use this tool whenever the user asks about:
+    - available products
+    - what products exist
+    - categories or genres
+    - "what do you have"
+    - "show me kits"
+    - "do you have ___"
+    Or something along these lines.
 
     Product format:
     id: This id should be kept internally and should NOT be given to the user.
@@ -32,8 +39,10 @@ def add_to_cart(product_id: str) -> str:
     """
     This method adds a product to the user's cart. product_id is the id of the product that should
     be added to the user's cart.
-    DO NOT call this unless the user has confirmed that they want to add the product to their cart
+    Use this tool whenever the user expresses clear intent to purchase, add, buy, get, or put a
+    product in their cart.
     """
+    # DO NOT call this unless the user has confirmed that they want to add the product to their cart
     return f"Product {product_id} added to cart."
 
 @tool
@@ -41,7 +50,15 @@ def navigate_to(product_id: str) -> str:
     """
     Navigate the user to a product's page so they can get more information. product_id is the product
     that will be showcased on the product page.
-    DO NOT call this unless the user has confirmed that they wish to be redirected (ex. to see more
-    information about a product, etc.)
+     Use this tool whenever the user asks to:
+    - view a product
+    - see a product
+    - go to a product
+    - open a product page
+    - learn more about a product
+    - "take me to" a product
+    Or something along these lines.
     """
+    # DO NOT call this unless the user has confirmed that they wish to be redirected (ex. to see more
+    # information about a product, etc.)
     return f"/product/:{product_id}"
