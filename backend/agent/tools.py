@@ -3,7 +3,8 @@ from langchain.tools import tool
 @tool
 def search_products(query: str) -> list:
     """
-    Search for products in the store. If query is empty (""), return ALL products.
+    Search for products in the store. If query is empty (""), the function returns all products
+    available in the store.
     This mimics GET /products?search=<query>.
     Use this tool whenever the user asks about:
     - available products
