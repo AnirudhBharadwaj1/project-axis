@@ -24,7 +24,7 @@ def search_products(query: str) -> list:
     products = [
         {"id": 1, "name": "Trap Essentials Kit", "genre": "trap", "price": 10},
         {"id": 2, "name": "Boom Bap Drums", "genre": "boom bap", "price": 25},
-        {"id": 3, "name": "Hyperpop FX Pack", "genre": "hyperpop", "price": 35},
+        {"id": 3, "name": "Hyperpop FX Pack", "genre": "hyperpop", "price": 5},
         {"id": 4, "name": "808 Warfare Pack", "genre": "trap", "price": 40},
     ]
 
@@ -35,8 +35,9 @@ def search_products(query: str) -> list:
 
     return [p for p in products if q in p["genre"] or q in p["name"].lower()]
 
+# TODO: Change this to str when implementing with actual database values
 @tool
-def add_to_cart(product_id: str) -> str:
+def add_to_cart(product_id: int) -> str:
     """
     This method adds a product to the user's cart. product_id is the id of the product that should
     be added to the user's cart.
@@ -46,8 +47,9 @@ def add_to_cart(product_id: str) -> str:
     # DO NOT call this unless the user has confirmed that they want to add the product to their cart
     return f"Product {product_id} added to cart."
 
+# TODO: Change this to str when implementing with actual database values
 @tool
-def navigate_to(product_id: str) -> str:
+def navigate_to(product_id: int) -> str:
     """
     Navigate the user to a product's page so they can get more information. product_id is the product
     that will be showcased on the product page.

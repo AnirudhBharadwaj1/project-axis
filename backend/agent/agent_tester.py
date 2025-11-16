@@ -20,7 +20,8 @@ prompt = (
     "you MUST call the tool `search_products`. Do not list or invent products yourself. "
     "Use the tool's output to form your answer. Be friendly and not pushy. "
     "Also, make the process convenient for the user, so recommend redirecting them to a product's page or "
-    "adding the product to their cart but do NOT perform the action unless they confirm."
+    "adding the product to their cart but do NOT perform the action unless they confirm." \
+    "When listing prices, simply show them as $X where X is the price. Do not list the currency type."
 )
 
 agent = create_agent(model="gpt-5-mini", tools=tools, system_prompt=prompt)
@@ -30,9 +31,9 @@ def run():
 
     # SEARCH_PRODUCTS: //////////////////////////////////////////
     # Test general product lookup
-    result = agent.invoke(
-        {"messages": [{"role": "user", "content": "What products are available on this website?"}]}
-    )
+    # result = agent.invoke(
+    #     {"messages": [{"role": "user", "content": "What products are available on this website?"}]}
+    # )
 
     # Test query
     # result = agent.invoke(
@@ -60,15 +61,20 @@ def run():
     #     {"messages": [{"role": "user", "content": "Can you take me to the Conch Drum Kit?"}]}
     # )
 
-    # Test getting product and then redirect
+    # Test getting product and then redirect (assertive)
+    # result = agent.invoke(
+    #     {"messages": [{"role": "user", "content": "Take me to the page for the cheapest trap drum kit on the website."}]}
+    # )
+
+    # Test getting product and then redirect (questioning)
     # result = agent.invoke(
     #     {"messages": [{"role": "user", "content": "Sure, can you take me to the cheapest trap drum kit on the website?"}]}
     # )
 
     # Test invalid price request
-    # result = agent.invoke(
-    #     {"messages": [{"role": "user", "content": "Take me to the kit that costs $7"}]}
-    # )
+    result = agent.invoke(
+        {"messages": [{"role": "user", "content": "Take me to the kit that costs $7"}]}
+    )
 
     # Test ambiguous request
     # result = agent.invoke(
@@ -87,17 +93,39 @@ def run():
     # )
 
     # MULTI: ///////////////////////////////////////////////////////
-    # Test search, add, redirect to page
+    # Test search and redirect to page
+    # history = [{"role": "user", "content": "What is the cheapest drum kit on the website?"}]
+    # result = agent.invoke({"messages": history})
+    
+    # history.append({"role": "user", "content": "Yes, redirect me to that page please."})
+    # result = agent.invoke({"messages": history})
+
+    # Test search and add to cart (questioning)
+    # history = [{"role": "user", "content": "What is the cheapest drum kit on the website?"}]
+    # result = agent.invoke({"messages": history})
+    
+    # history.append({"role": "user", "content": "Can you add the kit to my cart?"})
+    # result = agent.invoke({"messages": history})
+
+    # Test search and add to cart (assertive)
+    # history = [{"role": "user", "content": "What is the cheapest drum kit on the website?"}]
+    # result = agent.invoke({"messages": history})
+    
+    # history.append({"role": "user", "content": "Add the kit to my cart."})
+    # result = agent.invoke({"messages": history})
+
     # ///////////////////////////// TESTING /////////////////////////////
 
     # DEBUG DUMP
     print(json.dumps(result, indent=2, default=str))
     print("\n--------------------------------------------------------------------------------\n")
     for message in result["messages"]:
-        if message.role == "user":
+        if message.type == "human":
             print("User: ", message.content)
-        else:
+        elif message.type == "ai":
             print("Chatbot: ", message.content)
+        else:
+            print("Internal: ", message.content)
 
 
 if __name__ == "__main__":
