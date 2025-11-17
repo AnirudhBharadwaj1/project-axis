@@ -205,7 +205,28 @@ app.get("/getUser", async (req, res) => {
   res.json(user);
 });
 
+// Add a product to the user's cart
+app.post("/addToCart", async (req, res) => {
+  const { product } = req.query;
+
+  try {
+    //
+  } catch (error) {
+    console.error("Error adding product to cart", error);
+    return res.status(500).json({ error: error.message });
+  }
+});
+
 ////////////////////////////////////////////// AI SECTION
+app.post("/api/chat", async (req, res) => {
+  try {
+    const { message } = req.body;
+  } catch (err) {
+    console.error("Chatbot error:", err);
+    res.status(500).json({ error: "Failed to fetch GPT response" });
+  }
+});
+
 // app.post("/api/chat", async (req, res) => {
 //   try {
 //     const { message, prevMessage, productInfo } = req.body;
