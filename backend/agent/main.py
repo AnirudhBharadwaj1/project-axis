@@ -1,10 +1,13 @@
 from dotenv import load_dotenv
+from flask import Flask, request, jsonify
 from langchain.agents import create_agent
 from tools import *
 import json
 
 # Make the API key from the .env available for use here
 load_dotenv()
+
+app = Flask(__name__)
 
 # ///////////////////////////// TESTING /////////////////////////////
 tools = [search_products, add_to_cart, navigate_to]
@@ -24,11 +27,31 @@ prompt = (
 
 agent = create_agent(model="gpt-5-mini", tools=tools, system_prompt=prompt)
 
-def run():
-    # DEBUG DUMP
-    print(json.dumps(result, indent=2, default=str))
-    print("\n--------------------------------------------------------------------------------\n")
-    print(result["messages"][-1].content)
+@app.post("/invoke")
+def invoke():
+    """
+    Accept messages from server.js and return agent output
+    """
+    # Get the messages from the frontend
+    data = request.get_json()
+    if not data or "messages" not in data:
+        return jsonify({"error": "Request must contain 'messages'"}, 400)
+    
+    messages = data["messages"]
+
+    # Put the messages in the format that LangChain agent can understand
+    cleaned = []
+    for msg in messages:
+        cleaned.append({ 
+            "role": "user" if msg["sender"] == "user" else "assistant",
+            "content": msg["text"]
+        })
+
+    result = agent.invoke({"messages": cleaned})
+
+    return jsonify({
+        "message": result["messages"][-1].content
+    })
 
 if __name__ == "__main__":
-    run()
+    app.run(port=7000)

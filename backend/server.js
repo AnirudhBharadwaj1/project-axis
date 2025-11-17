@@ -220,7 +220,16 @@ app.post("/addToCart", async (req, res) => {
 ////////////////////////////////////////////// AI SECTION
 app.post("/api/chat", async (req, res) => {
   try {
-    const { message } = req.body;
+    const { messages } = req.body;
+
+    const pyRes = await fetch("http://localhost:7000/invoke", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages }),
+    });
+
+    const data = await pyRes.json();
+    res.json(data);
   } catch (err) {
     console.error("Chatbot error:", err);
     res.status(500).json({ error: "Failed to fetch GPT response" });
