@@ -106,7 +106,8 @@ def navigate_to(product_id: str) -> str:
     Or something along these lines.
     """
     # Call redirect endpoint
-    res = requests.get("http://localhost:5000/redirect", params={"product": product_id})
+    # res = requests.get("http://localhost:5000/redirect", params={"product": product_id})
 
-    res.raise_for_status()
-    return res.json().get("url", f"/product/{product_id}")
+    # res.raise_for_status()
+    # return res.json().get("url", f"/product/{product_id}")
+    return f"redirect:{product_id}"

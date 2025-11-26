@@ -76,14 +76,17 @@ function ChatBox() {
       const data = await res.json();
 
       if (data.message.startsWith("add-to-cart:")) {
-        const productId = data.message.replace("add-to-cart", "");
+        const productId = data.message.replace("add-to-cart:", "");
         addToCart(productId);
+        setMessages((prev) => [
+          ...prev,
+          { text: "Added product to cart.", sender: "bot" },
+        ]);
         return;
-      }
-
-      if (data.message.startsWith("/product/")) {
-        navigate(data.message);
-        return;
+      } else if (data.message.startsWith("redirect:")) {
+        const productId = data.message.replace("redirect:", "");
+        navigate(`/product/${productId}`);
+        return; // <-- TODO: Is this necessary?
       }
 
       setMessages((prev) => [...prev, { text: data.message, sender: "bot" }]);
