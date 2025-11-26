@@ -211,6 +211,7 @@ app.post("/addToCart", async (req, res) => {
 
   try {
     //
+    res.json({ message: "Product added to cart." });
   } catch (error) {
     console.error("Error adding product to cart", error);
     return res.status(500).json({ error: error.message });
@@ -218,6 +219,19 @@ app.post("/addToCart", async (req, res) => {
 });
 
 ////////////////////////////////////////////// AI SECTION
+app.post("/redirect", async (req, res) => {
+  const { product } = req.query;
+
+  try {
+    const url = `/product/${product}`;
+
+    res.json({ url });
+  } catch (error) {
+    console.error("Error redirecting to product page", error);
+    return res.status(500).json({ error: error.message });
+  }
+});
+
 app.post("/api/chat", async (req, res) => {
   try {
     const { messages } = req.body;

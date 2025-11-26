@@ -75,20 +75,24 @@ def search_products(query: str, type: str) -> list:
 
     return lst
 
-# TODO: Change this to str when implementing with actual database values
 @tool
-def add_to_cart(product_id: int) -> str:
+def add_to_cart(product_id: str) -> str:
     """
     This method adds a product to the user's cart. product_id is the id of the product that should
     be added to the user's cart.
     Use this tool whenever the user expresses clear intent to purchase, add, buy, get, or put a
     product in their cart.
     """
-    return f"Product {product_id} added to cart."
+    # Call add to cart endpoint
+    # res = requests.get("http://localhost:5000/addToCart", params={"product": product_id})
 
-# TODO: Change this to str when implementing with actual database values
+    # # Check for http error and return the message
+    # res.raise_for_status()
+    # return res.json().get("message", "added to cart.")
+    return f"add-to-cart:{product_id}"
+
 @tool
-def navigate_to(product_id: int) -> str:
+def navigate_to(product_id: str) -> str:
     """
     Navigate the user to a product's page so they can get more information. product_id is the product
     that will be showcased on the product page.
@@ -101,4 +105,8 @@ def navigate_to(product_id: int) -> str:
     - "take me to" a product
     Or something along these lines.
     """
-    return f"/product/:{product_id}"
+    # Call redirect endpoint
+    res = requests.get("http://localhost:5000/redirect", params={"product": product_id})
+
+    res.raise_for_status()
+    return res.json().get("url", f"/product/{product_id}")

@@ -14,7 +14,7 @@ function ChatBox() {
   const [bottomOffset, setBottomOffset] = useState(2);
   const [productInfo, setProductInfo] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { cart, addToCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -75,32 +75,44 @@ function ChatBox() {
 
       const data = await res.json();
 
-      // Possible responses from AI with the keywords
-      if (data.action === "redirect") {
-        const page = data.target;
-        navigate(`/product/${page}`);
-      } else if (data.action === "cart") {
-        // console.log("Add to cart");
-
-        let text;
-
-        if (!cart.includes(data.target)) {
-          addToCart(data.target);
-          text = "The item has been added to your cart.";
-        } else {
-          text = "The item is already in your cart.";
-        }
-
-        setMessages((prev) => [
-          ...prev,
-          {
-            text: text,
-            sender: "bot",
-          },
-        ]);
-      } else if (data.action === "respond") {
-        setMessages((prev) => [...prev, { text: data, sender: "bot" }]);
+      if (data.message.startsWith("add-to-cart:")) {
+        const productId = data.message.replace("add-to-cart", "");
+        addToCart(productId);
+        return;
       }
+
+      if (data.message.startsWith("/product/")) {
+        navigate(data.message);
+        return;
+      }
+
+      setMessages((prev) => [...prev, { text: data.message, sender: "bot" }]);
+      // Possible responses from AI with the keywords
+      // if (data.action === "redirect") {
+      //   const page = data.target;
+      //   navigate(`/product/${page}`);
+      // } else if (data.action === "cart") {
+      //   // console.log("Add to cart");
+
+      //   let text;
+
+      //   if (!cart.includes(data.target)) {
+      //     addToCart(data.target);
+      //     text = "The item has been added to your cart.";
+      //   } else {
+      //     text = "The item is already in your cart.";
+      //   }
+
+      //   setMessages((prev) => [
+      //     ...prev,
+      //     {
+      //       text: text,
+      //       sender: "bot",
+      //     },
+      //   ]);
+      // } else if (data.action === "respond") {
+      //   setMessages((prev) => [...prev, { text: data, sender: "bot" }]);
+      // }
     } catch (error) {
       console.error("Error with chatbot:", error);
     }

@@ -47,7 +47,8 @@ def invoke():
             "content": msg["text"]
         })
 
-    result = agent.invoke({"messages": cleaned})
+    # result = agent.invoke({"messages": cleaned})
+    result = agent.invoke(cleaned)
 
     return jsonify({
         "message": result["messages"][-1].content
